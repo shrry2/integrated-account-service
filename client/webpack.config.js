@@ -3,7 +3,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin'); // minify for production build
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // cleaning dist directory on each build
 
-const src  = path.resolve(__dirname, 'src');
+const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 
 module.exports = (env, argv) => {
@@ -19,12 +19,12 @@ module.exports = (env, argv) => {
   return {
     watch: IS_DEV,
     entry: {
-      main: src + '/main.js',
+      main: `${src}/main.jsx`,
     },
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       path: dist,
-      filename: '[name].bundle.js'
+      filename: '[name].bundle.js',
     },
     optimization: {
       minimize: true,
@@ -38,20 +38,20 @@ module.exports = (env, argv) => {
               },
             },
             extractComments: false,
-          })
-        ]
+          }),
+        ],
     },
     module: {
       rules: [
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
-        }
-      ]
+          loader: 'babel-loader',
+        },
+      ],
     },
     plugins: [
       new CleanWebpackPlugin(),
-    ]
+    ],
   };
 };

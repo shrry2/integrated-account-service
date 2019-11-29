@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       path: dist,
-      filename: '[name].js'
+      filename: '[name].bundle.js'
     },
     optimization: {
       minimize: true,

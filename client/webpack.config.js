@@ -1,5 +1,7 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+
+const TerserPlugin = require('terser-webpack-plugin'); // minify for production build
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // cleaning dist directory on each build
 
 const src  = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
@@ -47,6 +49,9 @@ module.exports = (env, argv) => {
           loader: 'babel-loader'
         }
       ]
-    }
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+    ]
   };
 };

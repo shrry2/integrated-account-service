@@ -3,6 +3,11 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin'); // minify for production build
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // cleaning dist directory on each build
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // make CSS external file
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // minify CSS
+
+const autoprefixer = require('autoprefixer');
+
 const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 
@@ -19,7 +24,8 @@ module.exports = (env, argv) => {
   return {
     watch: IS_DEV,
     entry: {
-      main: `${src}/main.jsx`,
+      main: `${src}/js/main.jsx`,
+      style: `${src}/styles/style.scss`,
     },
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
@@ -29,7 +35,7 @@ module.exports = (env, argv) => {
     optimization: {
       minimize: true,
       minimizer: IS_DEV
-        ? []
+        ? [new OptimizeCSSAssetsPlugin({})]
         : [
           new TerserPlugin({
             terserOptions: {
@@ -39,6 +45,7 @@ module.exports = (env, argv) => {
             },
             extractComments: false,
           }),
+          new OptimizeCSSAssetsPlugin({}),
         ],
     },
     module: {
@@ -48,10 +55,42 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
+        {
+          test: /\.scss$/,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: 'css-loader',
+              options: {
+                url: false,
+                sourceMap: IS_DEV,
+                importLoaders: 2,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: IS_DEV,
+                plugins: [
+                  autoprefixer({
+                    grid: true,
+                  }),
+                ],
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: IS_DEV,
+              },
+            },
+          ],
+        },
       ],
     },
     plugins: [
       new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({ filename: '[name].bundle.css' }),
     ],
   };
 };

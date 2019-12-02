@@ -3,5 +3,10 @@
   "test": "testing now...",
   "respond with a resource": "",
   "aaaa": "",
-  "testing": ""
+  "testing": "",
+  "header": {
+    "enable_javascript": {}
+  },
+  "defaultMeta": {},
+  "footer": {}
 }

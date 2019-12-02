@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "dev": "DEBUG=server:* npm start"
+    "dev": "DEBUG=server:* npm start",
+    "i18next-parse": "gulp i18next-parse"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,6 +13,9 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "i18next": "^19.0.1",
+    "i18next-express-middleware": "^1.8.2",
+    "i18next-sync-fs-backend": "^1.1.1",
     "morgan": "~1.9.1"
   },
   "devDependencies": {
@@ -19,6 +23,9 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "i18next-parser": "^0.13.0",
     "nodemon": "^2.0.1"
   }
 }

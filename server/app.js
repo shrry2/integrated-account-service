@@ -3,13 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const i18n = require('./utils/i18n');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view engine setup
+// i18n Setup
+const i18next = i18n.init();
+app.use(i18n.handle(i18next));
+
+// View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

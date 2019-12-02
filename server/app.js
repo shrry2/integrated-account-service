@@ -7,6 +7,8 @@ const i18n = require('./utils/i18n');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const publicApiFilter = require('./middlewares/filters/public-api-filter');
+const privateApiFilter = require('./middlewares/filters/private-api-filter');
 
 var app = express();
 
@@ -23,6 +25,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, '../client/dist')));
+// Public API Filter
+// the route that matches "/_/" uri
+app.use(/.*\/_\/.*/, publicApiFilter);
+
+// Private API Filter
+// the route that matches "/-/" uri
+app.use(/.*\/-\/.*/, privateApiFilter);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

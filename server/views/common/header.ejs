@@ -1,0 +1,48 @@
+<%
+    function getTitle() {
+        if(typeof title === 'string') {
+            return `${title} | SERVICE_NAME Account`;
+        } else {
+            return 'SERVICE_NAME Account';
+        }
+    }
+
+    const defaultMeta = {
+        'description': t('defaultMeta.description')
+    }
+    function getMeta(metaName) {
+        if( metaName in defaultMeta )  {
+            if( typeof meta === 'object' && metaName in meta ) {
+                return meta[metaName];
+            } else {
+                return defaultMeta[metaName];
+            }
+        } else {
+            return null;
+        }
+    }
+%><!DOCTYPE html>
+<html lang="<%=language%>">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title><%=getTitle()%></title>
+    <meta name="description" content="<%=getMeta('description')%>" />
+</head>
+<body>
+    <div id="flash-message-popup">
+        <noscript>
+            <div id="wrapper" class="red">
+                <div class="stack">
+                    <div class="title"><%= t('header.enable_javascript.title') %></div>
+                    <div class="body"><%= t('header.enable_javascript.message') %></div>
+                </div>
+            </div>
+        </noscript>
+    </div>
+    <header id="globalHeader" class="container-lg">
+<!--        <h1><a href="/" title="Back to top"><%- include('logo_with_icon'); -%>Account</a></h1>-->
+    </header>
+    <main class="container-lg">

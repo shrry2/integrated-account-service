@@ -1,7 +1,16 @@
 {
-  "hello": "こんにちは、世界",
-  "test": "プログラムのテスト中です...",
-  "testing": "",
-  "aaaa": "",
-  "respond with a resource": ""
+  "defaultMeta": {
+    "description": ""
+  },
+  "footer": {
+    "privacy": "プライバシーポリシー",
+    "terms": "規約"
+  },
+  "header": {
+    "enable_javascript": {
+      "message": "本サイトを正常に動作させるにはJavaScriptが必要です。有効にしたあとページを再読込してください。",
+      "title": "JavaScriptを有効にしてください"
+    }
+  },
+  "hello": "こんにちは、世界"
 }

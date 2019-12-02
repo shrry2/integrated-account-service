@@ -1,0 +1,75 @@
+<%
+
+    function getScriptTag(fileName) {
+      return;
+
+        if ( fileName in scriptManifest && /.+\.js/.test(fileName) ) {
+            return `<script src="${staticFilePath}bundles/${scriptManifest[fileName]}" ></script>`;
+        } else {
+            return '';
+        }
+    }
+    function loadScripts() {
+        return;
+
+        let tags = [getScriptTag('vendor.js')];
+
+        if (typeof pageScript !== 'undefined') {
+            if ( typeof pageScript === 'string' ) {
+                pageScript = [pageScript];
+            }
+            if ( Array.isArray(pageScript) ) {
+                pageScript.forEach((fileName) => {
+                    tags.push(getScriptTag(fileName));
+                });
+            }
+        }
+
+        return tags.join('\n');
+    }
+
+    function getFlashMessages() {
+        return;
+
+        if (typeof flashMessages !== 'undefined' && Array.isArray(flashMessages)) {
+            return `const flashMessages = ${JSON.stringify(flashMessages)};`;
+        } else {
+            return null;
+        }
+    }
+    function getInlineScript() {
+        return;
+
+        const tagOpen = `<script nonce="${cspNonce}">`;
+        const tagClose = '</script>'
+
+        const flashMessagesTag = getFlashMessages();
+        if (flashMessagesTag) {
+            elements.push(flashMessagesTag);
+        }
+
+        if (typeof inlineScripts !== 'undefined' && Array.isArray(inlineScripts) && inlineScripts.length > 0) {
+            return `${tagOpen}${inlineScripts.map((e) => (e))}${tagClose}`;
+        } else {
+            return '';
+        }
+    }
+
+    %>
+    </main>
+    <footer id="globalFooter">
+        <div class="container-lg">
+            <section class="left">
+                <div id="language-selector"></div>
+            </section>
+            <section class="right">
+                <a href="#"><%= t('footer.privacy') %></a>
+                <a href="#"><%= t('footer.terms') %></a>
+            </section>
+        </div>
+    </footer>
+
+    <%-getInlineScript()%>
+    <%-loadScripts()%>
+</body>
+</html>

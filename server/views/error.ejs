@@ -1,3 +1,12 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<%- include('common/header'); -%>
+<div class="errorPage container-sm">
+    <h1>
+        <span class="statusCode"><%= statusCode %></span><br>
+        <%= title %>
+    </h1>
+    <p class="message"><%= message %></p>
+    <% if (error) { %>
+    <pre><%= error.stack %></pre>
+    <% } %>
+</div>
+<%- include('common/footer'); -%>

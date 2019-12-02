@@ -1,1 +1,11 @@
-{}
+{
+  "test": "プログラムのテスト中です...",
+  "testing": "",
+  "aaaa": "",
+  "respond with a resource": "",
+  "header": {
+    "enable_javascript": {}
+  },
+  "defaultMeta": {},
+  "footer": {}
+}

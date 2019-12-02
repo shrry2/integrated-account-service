@@ -8,12 +8,12 @@ const init = () => {
     .use(backend)
     .use(middleware.LanguageDetector)
     .init({
-      ns: ['master'],
+      ns: ['master', 'errors'],
       defaultNS: 'master',
       backend: {
         loadPath: path.join(__dirname, '../locales/{{lng}}/{{ns}}.json'),
       },
-      debug: true,
+      // debug: true,
       initImmediate: false,
       detection: {
         order: ['cookie', 'header'],
@@ -23,14 +23,14 @@ const init = () => {
       },
       fallbackLng: 'en',
       preload: ['en', 'ja'],
+      saveMissing: true,
+      saveMissingTo: 'all',
     });
 
   return i18next;
 };
 
-const handle = (i18n) => {
-  return middleware.handle(i18n);
-};
+const handle = (i18n) => middleware.handle(i18n);
 
 module.exports = {
   init,

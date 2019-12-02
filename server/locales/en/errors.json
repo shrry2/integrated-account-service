@@ -1,0 +1,14 @@
+{
+  "${error}": {
+    "message": "",
+    "title": ""
+  },
+  "Not Found": {
+    "title": "Not Found",
+    "message": "The page or resource you have requested was not found on our server."
+  },
+  "csrf_token_error": {
+    "message": "CSRF Token Error",
+    "title": "The server could not validate your request. Please try again after a while or contact the support."
+  }
+}

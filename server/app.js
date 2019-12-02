@@ -1,55 +1,53 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const i18n = require('./utils/i18n');
+/**
+ * The Great Entry Point of the App
+ */
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const Boom = require('@hapi/boom');
+
+const i18n = require('./utils/i18n');
+const errorHandler = require('./middlewares/error-handler');
+
 const publicApiFilter = require('./middlewares/filters/public-api-filter');
 const privateApiFilter = require('./middlewares/filters/private-api-filter');
 
-var app = express();
+const indexRouter = require('./routes/index');
 
-// i18n Setup
-const i18next = i18n.init();
-app.use(i18n.handle(i18next));
+const app = express();
 
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// some tedious but useful stuffs
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, '../client/dist')));
-// Public API Filter
-// the route that matches "/_/" uri
+
+// i18n Setup
+const i18next = i18n.init();
+app.use(i18n.handle(i18next));
+
+// Public API Filter - Routees that has '/_/' in uri
 app.use(/.*\/_\/.*/, publicApiFilter);
 
-// Private API Filter
-// the route that matches "/-/" uri
+// Private API Filter - Routees that has '/-/' in uri
 app.use(/.*\/-\/.*/, privateApiFilter);
 
+// Routing
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use((req, res, next) => {
+  next(Boom.notFound());
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use(errorHandler);
 
 module.exports = app;

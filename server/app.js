@@ -7,6 +7,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const Boom = require('@hapi/boom');
+const helmet = require('helmet');
+const uuidv4 = require('uuid/v4');
 
 const i18n = require('./utils/i18n');
 const errorHandler = require('./middlewares/error-handler');
@@ -22,12 +24,38 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// some tedious but useful stuffs
+// Miscellaneous Stuffs
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, '../client/dist')));
+
+// Security
+app.use(helmet({
+  frameguard: {
+    action: 'deny',
+  },
+  referrerPolicy: true,
+}));
+const staticFileCdnUrl = 'https://static.SERVICE_NAME.com/';
+app.use((req, res, next) => {
+  res.locals.nonce = uuidv4();
+  next();
+});
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'", staticFileCdnUrl],
+    scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'],
+    styleSrc: ["'self'", 'https://fonts.googleapis.com/'],
+    fontSrc: ['https://fonts.gstatic.com/'],
+    imgSrc: ["'self'", 'data:', staticFileCdnUrl],
+    frameSrc: ['https://www.google.com/recaptcha/'],
+    workerSrc: ["'none'"],
+    blockAllMixedContent: true,
+    upgradeInsecureRequests: true,
+  },
+}));
 
 // i18n Setup
 const i18next = i18n.init();

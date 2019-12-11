@@ -62,10 +62,10 @@ app.use(helmet.contentSecurityPolicy({
 const i18next = i18n.init();
 app.use(i18n.handle(i18next));
 
-// Public API Filter - Routees that has '/_/' in uri
+// Public API Filter - Routes that has '/_/' in uri
 app.use(/.*\/_\/.*/, publicApiFilter);
 
-// Private API Filter - Routees that has '/-/' in uri
+// Private API Filter - Routes that has '/-/' in uri
 app.use(/.*\/-\/.*/, privateApiFilter);
 
 // Routing

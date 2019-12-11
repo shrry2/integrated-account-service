@@ -9,6 +9,7 @@ const logger = require('morgan');
 const Boom = require('@hapi/boom');
 const helmet = require('helmet');
 const uuidv4 = require('uuid/v4');
+const addRequestId = require('express-request-id');
 const config = require('config');
 
 const i18n = require('./utils/i18n');
@@ -21,15 +22,22 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// Add Request ID
+app.use(addRequestId());
+
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Miscellaneous Stuffs
+// Logger
 app.use(logger('dev'));
+
+// Parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Host Static Files
 app.use('/static', express.static(path.join(__dirname, '../client/dist')));
 
 // Security
@@ -58,14 +66,14 @@ app.use(helmet.contentSecurityPolicy({
   },
 }));
 
-// i18n Setup
+// i18n
 const i18next = i18n.init();
 app.use(i18n.handle(i18next));
 
-// Public API Filter - Routes that has '/_/' in uri
+// Public API Filter - Routes that have '/_/' in uri
 app.use(/.*\/_\/.*/, publicApiFilter);
 
-// Private API Filter - Routes that has '/-/' in uri
+// Private API Filter - Routes that have '/-/' in uri
 app.use(/.*\/-\/.*/, privateApiFilter);
 
 // Routing

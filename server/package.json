@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@hapi/boom": "^8.0.1",
+    "config": "^3.2.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",

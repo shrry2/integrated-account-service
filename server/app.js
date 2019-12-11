@@ -9,6 +9,7 @@ const logger = require('morgan');
 const Boom = require('@hapi/boom');
 const helmet = require('helmet');
 const uuidv4 = require('uuid/v4');
+const config = require('config');
 
 const i18n = require('./utils/i18n');
 const errorHandler = require('./middlewares/error-handler');
@@ -38,18 +39,18 @@ app.use(helmet({
   },
   referrerPolicy: true,
 }));
-const staticFileCdnUrl = 'https://static.SERVICE_NAME.com/';
+const staticFileCdnUrl = 'https://static.SERVICE-NAME.com/';
 app.use((req, res, next) => {
   res.locals.nonce = uuidv4();
   next();
 });
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    defaultSrc: ["'self'", staticFileCdnUrl],
+    defaultSrc: ["'self'", config.get('staticHost')],
     scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'],
     styleSrc: ["'self'", 'https://fonts.googleapis.com/'],
     fontSrc: ['https://fonts.gstatic.com/'],
-    imgSrc: ["'self'", 'data:', staticFileCdnUrl],
+    imgSrc: ["'self'", 'data:', config.get('staticHost')],
     frameSrc: ['https://www.google.com/recaptcha/'],
     workerSrc: ["'none'"],
     blockAllMixedContent: true,

@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const Boom = require('@hapi/boom');
 const helmet = require('helmet');
-const uuidv4 = require('uuid/v4');
 const addRequestId = require('express-request-id');
 const config = require('config');
 
@@ -47,11 +46,7 @@ app.use(helmet({
   },
   referrerPolicy: true,
 }));
-const staticFileCdnUrl = 'https://static.SERVICE-NAME.com/';
-app.use((req, res, next) => {
-  res.locals.nonce = uuidv4();
-  next();
-});
+app.use(cspNonceSetter());
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'", config.get('staticHost')],

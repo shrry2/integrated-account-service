@@ -5,13 +5,13 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const Boom = require('@hapi/boom');
 const helmet = require('helmet');
 const addRequestId = require('express-request-id');
 const config = require('config');
 
 const i18n = require('./utils/i18n');
+const cspNonceSetter = require('./middlewares/csp-nonce-setter');
 const errorHandler = require('./middlewares/error-handler');
 
 const publicApiFilter = require('./middlewares/filters/public-api-filter');
@@ -21,15 +21,18 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+const logger = require('./utils/logger')(app);
+
 // Add Request ID
 app.use(addRequestId());
+
+// Initialize logger and start logging
+app.use(logger);
+app.logger.info('Logger initialized and logging started.');
 
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-// Logger
-app.use(logger('dev'));
 
 // Parsers
 app.use(express.json());

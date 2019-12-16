@@ -60,7 +60,6 @@ const errorHandler = (err, req, res, next) => {
         error: payload.error,
         title: localized.title,
         message: localized.message,
-        request_id: req.id,
       },
     });
   }

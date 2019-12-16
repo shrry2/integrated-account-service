@@ -1,3 +1,10 @@
 {
-  "staticHost": "https://static.example.com/"
+  "staticHost": "https://static.example.com/",
+  "database": {
+    "username": "root",
+    "password": "root",
+    "database": "doriths_account_dev",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
 }

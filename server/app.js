@@ -21,6 +21,7 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+const models = require('./models');
 const logger = require('./utils/logger')(app);
 
 // Add Request ID
@@ -41,6 +42,17 @@ app.use(cookieParser());
 
 // Host Static Files
 app.use('/static', express.static(path.join(__dirname, '../client/dist')));
+
+// Initialize database
+models.sequelize
+  .authenticate()
+  .then(() => {
+    app.logger.info('Database connection has been successfully established.');
+  })
+  .catch((err) => {
+    app.logger.error('Database connection error: ', err);
+    process.exit(-1);
+  });
 
 // Security
 app.use(helmet({

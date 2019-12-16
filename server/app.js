@@ -51,7 +51,7 @@ models.sequelize
   })
   .catch((err) => {
     app.logger.error('Database connection error: ', err);
-    process.exit(-1);
+    process.exit(1);
   });
 
 // Security

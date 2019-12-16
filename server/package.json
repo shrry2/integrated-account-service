@@ -4,8 +4,15 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "dev": "DEBUG=server:* npm start",
+    "dev": "DEBUG=server:* NODE_ENV=development nodemon ./bin/www",
     "i18next-parse": "gulp i18next-parse"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500"
   },
   "dependencies": {
     "@hapi/boom": "^8.0.1",

@@ -26,12 +26,7 @@ const errorHandler = (err, req, res, next) => {
 
   if (error.isServer) {
     // Server Error => Log it!
-    if (req.app.get('env') === 'development') {
-      console.log(`Server error occurred while executing the request: ${req.id}`);
-      console.log(error);
-    } else {
-      // TODO: implement log error on production mode
-    }
+    req.logger.error('Error handler captured the error: ', error);
   }
 
   const statusCode = error.isBoom

@@ -11,7 +11,7 @@ const addRequestId = require('express-request-id');
 const config = require('config');
 
 const i18n = require('./utils/i18n');
-const cspNonceSetter = require('./middlewares/csp-nonce-setter');
+const setCspNonce = require('./middlewares/csp-nonce-setter');
 const errorHandler = require('./middlewares/error-handler');
 
 const publicApiFilter = require('./middlewares/filters/public-api-filter');
@@ -61,7 +61,7 @@ app.use(helmet({
   },
   referrerPolicy: true,
 }));
-app.use(cspNonceSetter());
+app.use(setCspNonce());
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'", config.get('staticHost')],

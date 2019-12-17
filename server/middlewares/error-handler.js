@@ -24,7 +24,7 @@ const errorHandler = (err, req, res, next) => {
     };
   }
 
-  if (error.isServer) {
+  if (error.isServer || req.app.get('env') === 'development') {
     // Server Error => Log it!
     req.logger.error('Error handler captured the error: ', error);
   }

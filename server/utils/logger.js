@@ -1,38 +1,35 @@
 /**
  * Logger
  */
-const winston = require('winston');
+const { createLogger, format, transports } = require('winston');
 
 const getLogger = (isDev = false) => {
   // Set log level
-  let level = 'info';
-  if (isDev) {
-    level = 'debug';
-  }
+  const logLevel = isDev ? 'debug' : 'info';
 
   // Set transports
-  let transports = [/* TODO: Add stackdriver support on production mode. */];
+  let logTransports = [/* TODO: Add stackdriver support on production mode. */];
   if (isDev) {
-    transports = [new winston.transports.Console()];
+    logTransports = [new transports.Console()];
   }
 
   // Set format
-  let format = winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json(),
+  let logFormat = format.combine(
+    format.timestamp(),
+    format.json(),
   );
   if (isDev) {
-    format = winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.colorize({ all: true }),
-      winston.format.simple(),
+    logFormat = format.combine(
+      format.timestamp(),
+      format.colorize({ all: true }),
+      format.simple(),
     );
   }
 
-  return winston.createLogger({
-    level,
-    format,
-    transports,
+  return createLogger({
+    level: logLevel,
+    format: logFormat,
+    transports: logTransports,
     defaultMeta: { service: 'account-server-backend' },
   });
 };

@@ -1,10 +1,14 @@
-const express = require('express');
+const { Router } = require('express');
 
-const router = express.Router();
+const signupRoutes = require('./signup');
+
+const indexRouter = Router();
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+indexRouter.get('/', (req, res, next) => {
+  res.render('index', { title: 'Exp' });
 });
 
-module.exports = router;
+indexRouter.use('/signup', signupRoutes);
+
+module.exports = indexRouter;

@@ -21,6 +21,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-promise-router": "^3.0.3",
     "express-request-id": "^1.4.1",
     "helmet": "^3.21.2",
     "http-errors": "~1.6.3",

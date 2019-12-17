@@ -17,11 +17,12 @@ const errorHandler = require('./middlewares/error-handler');
 const publicApiFilter = require('./middlewares/filters/public-api-filter');
 const privateApiFilter = require('./middlewares/filters/private-api-filter');
 
-const indexRouter = require('./routes/index');
+const allRoutes = require('./routes');
+
+const models = require('./models');
 
 const app = express();
 
-const models = require('./models');
 const logger = require('./utils/logger')(app);
 
 // Add Request ID
@@ -87,7 +88,7 @@ app.use(/.*\/_\/.*/, publicApiFilter);
 app.use(/.*\/-\/.*/, privateApiFilter);
 
 // Routing
-app.use('/', indexRouter);
+app.use('/', allRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

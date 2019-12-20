@@ -7,6 +7,26 @@
         }
     }
 
+    function getBundleFilePath(fileName) {
+        return `<link rel="stylesheet" href="${bundleUrl}${fileName}" />`;
+    }
+    function loadStyles() {
+        let tags = [getBundleFilePath('style.css')];
+
+        if (typeof pageStyleSheet !== 'undefined') {
+            if ( typeof pageStyleSheet === 'string' ) {
+                pageStyleSheet = [pageStyleSheet];
+            }
+            if ( Array.isArray(pageStyleSheet) ) {
+                pageStyleSheet.forEach((fileName) => {
+                    tags.push(getBundleFilePath(fileName));
+                });
+            }
+        }
+
+        return tags.join('\n');
+    }
+
     const defaultMeta = {
         'description': t('defaultMeta.description')
     }
@@ -30,6 +50,7 @@
 
     <title><%=getTitle()%></title>
     <meta name="description" content="<%=getMeta('description')%>" />
+    <%-loadStyles()%>
 </head>
 <body>
     <div id="flash-message-popup">

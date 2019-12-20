@@ -8,7 +8,7 @@ const init = () => {
     .use(backend)
     .use(middleware.LanguageDetector)
     .init({
-      ns: ['master', 'errors'],
+      ns: ['master', 'errors', 'pages'],
       defaultNS: 'master',
       backend: {
         loadPath: path.join(__dirname, '../locales/{{lng}}/{{ns}}.json'),

@@ -1,3 +1,7 @@
-body {
-  background-color: aqua;
-}
+@import "vendor/_vendor";
+
+@import "global/_global";
+
+@import "components/_components";
+
+@import "pages/_pages";

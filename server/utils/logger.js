@@ -38,6 +38,7 @@ const middleware = (app) => {
   const logger = getLogger(app.get('env') === 'development');
   // eslint-disable-next-line no-param-reassign
   app.logger = logger;
+  app.logger.info('Logger initialized and logging started.');
 
   return (req, res, next) => {
     req.logger = logger.child({ requestId: req.id });

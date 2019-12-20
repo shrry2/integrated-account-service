@@ -1,9 +1,8 @@
 const Sentry = require('@sentry/node');
 const config = require('config');
 
-Sentry.init({ dsn: config.get('sentryDsn') });
-
 const middleware = (app) => {
+  Sentry.init({ dsn: config.get('sentryDsn') });
   app.use(Sentry.Handlers.requestHandler());
 
   // Return the middleware that sets the request ID to the report

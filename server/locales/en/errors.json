@@ -7,6 +7,9 @@
     "title": "Not Found",
     "message": "The page or resource you have requested was not found on our server."
   },
+  "tooBusy": {
+    "message": "The server is temporary very busy and could not process your request. Please try again in a few moment."
+  },
   "Internal Server Error": {
     "title": "Internal Server Error",
     "message": "Something went wrong on our server while processing your request. Kindly try again after a while or please let us know the details of your action."

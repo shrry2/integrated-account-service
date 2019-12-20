@@ -13,6 +13,7 @@ const sentry = require('./utils/sentry');
 const i18n = require('./utils/i18n');
 const secureApp = require('./middlewares/security');
 const errorHandler = require('./middlewares/error-handler');
+const tooBusy = require('./middlewares/toobusy');
 
 const publicApiFilter = require('./middlewares/filters/public-api-filter');
 const privateApiFilter = require('./middlewares/filters/private-api-filter');
@@ -35,7 +36,12 @@ if (IS_PROD || FORCE_SENTRY_ENABLED) {
 
 // Initialize logger and start logging
 app.use(logger);
-app.logger.info('Logger initialized and logging started.');
+
+// i18n
+const i18next = i18n.init();
+app.use(i18n.handle(i18next));
+
+app.use(tooBusy());
 
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,10 +60,6 @@ db.init(app);
 
 // Security
 secureApp(app);
-
-// i18n
-const i18next = i18n.init();
-app.use(i18n.handle(i18next));
 
 // Public API Filter - Routes that have '/_/' in uri
 app.use(/.*\/_\/.*/, publicApiFilter);

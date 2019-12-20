@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@hapi/boom": "^8.0.1",
+    "@sentry/node": "^5.10.2",
     "config": "^3.2.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

@@ -2,6 +2,7 @@
  * Error Handler
  */
 const Boom = require('@hapi/boom');
+const { IS_DEV } = require('../constants');
 
 const errorHandler = (err, req, res, next) => {
   if (res.headersSent) {
@@ -24,8 +25,9 @@ const errorHandler = (err, req, res, next) => {
     };
   }
 
-  if (error.isServer || req.app.get('env') === 'development') {
+  if (error.isServer || IS_DEV) {
     // Server Error => Log it!
+    // Development environment => Display any errors
     req.logger.error('Error handler captured the error: ', error);
   }
 

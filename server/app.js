@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const Boom = require('@hapi/boom');
 const addRequestId = require('express-request-id');
 
+const { IS_PROD, FORCE_SENTRY_ENABLED } = require('./constants');
+const sentry = require('./utils/sentry');
 const i18n = require('./utils/i18n');
 const secureApp = require('./middlewares/security');
 const errorHandler = require('./middlewares/error-handler');
@@ -25,6 +27,11 @@ const logger = require('./utils/logger')(app);
 
 // Add Request ID
 app.use(addRequestId());
+
+// Init Sentry in production mode or force sentry mode
+if (IS_PROD || FORCE_SENTRY_ENABLED) {
+  app.use(sentry.middleware(app));
+}
 
 // Initialize logger and start logging
 app.use(logger);
@@ -65,6 +72,11 @@ app.use('/', allRoutes);
 app.use((req, res, next) => {
   next(Boom.notFound());
 });
+
+// sentry error handler
+if (IS_PROD || FORCE_SENTRY_ENABLED) {
+  app.use(sentry.errorHandler());
+}
 
 // error handler
 app.use(errorHandler);

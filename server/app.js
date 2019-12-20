@@ -6,12 +6,10 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const Boom = require('@hapi/boom');
-const helmet = require('helmet');
 const addRequestId = require('express-request-id');
-const config = require('config');
 
 const i18n = require('./utils/i18n');
-const setCspNonce = require('./middlewares/csp-nonce-setter');
+const secureApp = require('./middlewares/security');
 const errorHandler = require('./middlewares/error-handler');
 
 const publicApiFilter = require('./middlewares/filters/public-api-filter');
@@ -48,26 +46,7 @@ app.use('/static', express.static(path.join(__dirname, '../client/dist')));
 db.init(app);
 
 // Security
-app.use(helmet({
-  frameguard: {
-    action: 'deny',
-  },
-  referrerPolicy: true,
-}));
-app.use(setCspNonce());
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'", config.get('staticHost')],
-    scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'],
-    styleSrc: ["'self'", 'https://fonts.googleapis.com/'],
-    fontSrc: ['https://fonts.gstatic.com/'],
-    imgSrc: ["'self'", 'data:', config.get('staticHost')],
-    frameSrc: ['https://www.google.com/recaptcha/'],
-    workerSrc: ["'none'"],
-    blockAllMixedContent: true,
-    upgradeInsecureRequests: true,
-  },
-}));
+secureApp(app);
 
 // i18n
 const i18next = i18n.init();

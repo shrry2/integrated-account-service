@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const uuidv4 = require('uuid/v4');
 
 const securityMiddleware = (app) => {
+  const IS_DEV = app.get('env') === 'development';
+
   // Prevent HTTP Parameter pollution
   app.use(hpp());
 
@@ -48,7 +50,7 @@ const securityMiddleware = (app) => {
         (request, response) => `'nonce-${response.locals.nonce}'`,
       ],
 
-      // The origins of images is open to all servers
+      // The origins of images are open to all servers
       imgSrc: ['https:', 'http:', "'self'", 'data:', 'blob:'],
 
       // Valid sources of stylesheets
@@ -56,7 +58,7 @@ const securityMiddleware = (app) => {
 
       // Applies to XMLHttpRequest (AJAX), WebSocket or EventSource.
       // If not allowed the browser emulates a 400 HTTP status code.
-      connectSrc: ['https:'],
+      connectSrc: IS_DEV ? ['https:', 'http'] : ['https:'],
 
       // Valid sources of fonts
       fontSrc: ['https://fonts.gstatic.com/'],

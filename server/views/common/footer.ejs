@@ -1,18 +1,9 @@
 <%
-
-    function getScriptTag(fileName) {
-      return;
-
-        if ( fileName in scriptManifest && /.+\.js/.test(fileName) ) {
-            return `<script src="${staticFilePath}bundles/${scriptManifest[fileName]}" ></script>`;
-        } else {
-            return '';
-        }
+    function getBundleFilePath(fileName) {
+      return `<script src="${bundleUrl}${fileName}" ></script>`;
     }
     function loadScripts() {
-        return;
-
-        let tags = [getScriptTag('vendor.js')];
+        let tags = [getBundleFilePath('main.js')];
 
         if (typeof pageScript !== 'undefined') {
             if ( typeof pageScript === 'string' ) {
@@ -20,7 +11,7 @@
             }
             if ( Array.isArray(pageScript) ) {
                 pageScript.forEach((fileName) => {
-                    tags.push(getScriptTag(fileName));
+                    tags.push(getBundleFilePath(fileName));
                 });
             }
         }
@@ -40,7 +31,7 @@
     function getInlineScript() {
         return;
 
-        const tagOpen = `<script nonce="${cspNonce}">`;
+        const tagOpen = `<script nonce="${nonce}">`;
         const tagClose = '</script>'
 
         const flashMessagesTag = getFlashMessages();

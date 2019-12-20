@@ -42,7 +42,6 @@ const securityMiddleware = (app) => {
       // Valid sources of JavaScript.
       scriptSrc: [
         "'self'",
-        config.get('staticHost'),
         'www.google-analytics.com',
         'https://www.google.com/recaptcha/',
         'https://www.gstatic.com/recaptcha/',

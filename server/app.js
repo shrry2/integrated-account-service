@@ -14,6 +14,7 @@ const i18n = require('./utils/i18n');
 const secureApp = require('./middlewares/security');
 const errorHandler = require('./middlewares/error-handler');
 const tooBusy = require('./middlewares/toobusy');
+const serveStatic = require('./middlewares/static-file');
 
 const filters = require('./middlewares/filters');
 
@@ -52,7 +53,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Host Static Files
-app.use('/static', express.static(path.join(__dirname, '../client/dist')));
+serveStatic(app);
 
 // Initialize database
 db.init(app);

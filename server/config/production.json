@@ -1,1 +1,4 @@
-{}
+{
+  "staticHost": "https://static.example.com/",
+  "bundleContentHash": "SET_BUNDLE_CONTENT_HASH"
+}

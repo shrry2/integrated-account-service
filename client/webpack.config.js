@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       path: dist,
-      filename: IS_DEV ? 'DEV/[name].js' : '[name].js/[contenthash].js',
+      filename: IS_DEV ? 'DEV/[name].js' : '[hash]/[name].js',
     },
     optimization: {
       minimize: true,
@@ -91,7 +91,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin({ filename: IS_DEV ? 'DEV/[name].css' : '[name].css/[contenthash].css' }),
+      new MiniCssExtractPlugin({ filename: IS_DEV ? 'DEV/[name].css' : '[hash]/[name].css' }),
     ],
   };
 };

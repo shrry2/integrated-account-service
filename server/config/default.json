@@ -1,6 +1,7 @@
 {
-  "staticHost": "https://static.example.com/",
+  "staticHost": "/static/",
   "sentryDsn": "https://f3b774567f0e4f2fa53e80db46a80853@sentry.io/1862921",
+  "bundleContentHash": "DEV",
   "database": {
     "username": "root",
     "password": "root",

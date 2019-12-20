@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); /
 const autoprefixer = require('autoprefixer');
 
 const src = path.resolve(__dirname, 'src');
-const dist = path.resolve(__dirname, 'dist');
+const dist = path.resolve(__dirname, 'dist/bundles');
 
 module.exports = (env, argv) => {
   let IS_DEV = true;
@@ -26,11 +26,12 @@ module.exports = (env, argv) => {
     entry: {
       main: `${src}/js/main.jsx`,
       style: `${src}/styles/style.scss`,
+      signup: `${src}/js/pages/signup/index.jsx`,
     },
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
       path: dist,
-      filename: '[name].bundle.js',
+      filename: IS_DEV ? 'DEV/[name].js' : '[name].js/[contenthash].js',
     },
     optimization: {
       minimize: true,
@@ -90,7 +91,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin({ filename: '[name].bundle.css' }),
+      new MiniCssExtractPlugin({ filename: IS_DEV ? 'DEV/[name].css' : '[name].css/[contenthash].css' }),
     ],
   };
 };

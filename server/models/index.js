@@ -23,7 +23,22 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
+const init = (app) => {
+  sequelize
+    .authenticate()
+    .then(() => {
+      app.logger.info('Database connection has been successfully established.');
+      // eslint-disable-next-line no-param-reassign
+      app.db = db;
+    })
+    .catch((err) => {
+      app.logger.error('Database connection error: ', err);
+      process.exit(1);
+    });
+};
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.init = init;
 
 module.exports = db;

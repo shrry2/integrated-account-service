@@ -19,7 +19,7 @@ const privateApiFilter = require('./middlewares/filters/private-api-filter');
 
 const allRoutes = require('./routes');
 
-const models = require('./models');
+const db = require('./models');
 
 const app = express();
 
@@ -45,15 +45,7 @@ app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, '../client/dist')));
 
 // Initialize database
-models.sequelize
-  .authenticate()
-  .then(() => {
-    app.logger.info('Database connection has been successfully established.');
-  })
-  .catch((err) => {
-    app.logger.error('Database connection error: ', err);
-    process.exit(1);
-  });
+db.init(app);
 
 // Security
 app.use(helmet({

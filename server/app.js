@@ -15,8 +15,7 @@ const secureApp = require('./middlewares/security');
 const errorHandler = require('./middlewares/error-handler');
 const tooBusy = require('./middlewares/toobusy');
 
-const publicApiFilter = require('./middlewares/filters/public-api-filter');
-const privateApiFilter = require('./middlewares/filters/private-api-filter');
+const filters = require('./middlewares/filters');
 
 const allRoutes = require('./routes');
 
@@ -61,11 +60,8 @@ db.init(app);
 // Security
 secureApp(app);
 
-// Public API Filter - Routes that have '/_/' in uri
-app.use(/.*\/_\/.*/, publicApiFilter);
-
-// Private API Filter - Routes that have '/-/' in uri
-app.use(/.*\/-\/.*/, privateApiFilter);
+// Filters
+app.use(filters);
 
 // Routing
 app.use('/', allRoutes);

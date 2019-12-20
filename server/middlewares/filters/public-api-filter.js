@@ -4,7 +4,7 @@
 const Boom = require('@hapi/boom');
 
 const publicApiFilter = (req, res, next) => {
-  console.log('public api filter called.');
+  req.logger.debug('public api filter called.');
   next();
 };
 

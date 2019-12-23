@@ -38,7 +38,10 @@ class ErrorBoundary extends React.Component {
 
 ErrorBoundary.propTypes = {
   fallbackComponent: PropTypes.element,
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element
+  ]),
 };
 
 ErrorBoundary.defaultProps = {

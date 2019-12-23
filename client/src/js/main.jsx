@@ -1,10 +1,7 @@
-import React from 'react';
-import { render } from 'react-dom';
+import * as Sentry from '@sentry/browser';
 
-class App extends React.Component {
-  render() {
-    return <p> Hello React!</p>;
-  }
+// TODO: ENABLE ON PRODUCTION MODE
+const REPORT_ERROR = false;
+if (REPORT_ERROR) {
+  Sentry.init({ dsn: 'https://4da6d8ca8edf4fe4964eee2c12370c7b@sentry.io/1864481' });
 }
-
-render(<App />, document.getElementById('app'));

@@ -89,6 +89,9 @@ module.exports = (env, argv) => {
         },
       ],
     },
+    resolve: {
+      extensions: ['.js', '.jsx'],
+    },
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({ filename: IS_DEV ? 'DEV/[name].css' : '[hash]/[name].css' }),

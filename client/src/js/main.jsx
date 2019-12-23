@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser';
+import './components/LanguageSelector';
 
 // TODO: ENABLE ON PRODUCTION MODE
 const REPORT_ERROR = false;

@@ -3,6 +3,13 @@ const i18next = require('i18next');
 const middleware = require('i18next-express-middleware');
 const backend = require('i18next-sync-fs-backend');
 
+const localeList = require('../../shared/global/locales');
+
+const localeCodes = [];
+localeList.forEach((lang) => {
+  localeCodes.push(lang.code);
+});
+
 const init = () => {
   i18next
     .use(backend)
@@ -21,8 +28,8 @@ const init = () => {
         lookupCookie: 'locale',
         lookupHeader: 'accept-language',
       },
-      fallbackLng: 'en',
-      preload: ['en', 'ja'],
+      fallbackLng: localeCodes[0],
+      preload: localeCodes,
       saveMissing: true,
       saveMissingTo: 'all',
     });

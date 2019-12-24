@@ -7,7 +7,9 @@ const { SERVER_URL } = require('../constants');
 const serveStatic = (app) => {
   const staticFileRealPath = path.join(__dirname, '../../client/dist');
   app.use('/static', staticMiddleware(staticFileRealPath));
-  console.log(staticFileRealPath);
+
+  const localeFileMiddlePath = path.join(__dirname, '../../client/locales');
+  app.use('/locales', staticMiddleware(localeFileMiddlePath));
 
   app.use((req, res, next) => {
     const host = config.get('staticHost') || `${SERVER_URL}/static`;

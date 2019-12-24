@@ -57,7 +57,7 @@ const securityMiddleware = (app) => {
 
       // Applies to XMLHttpRequest (AJAX), WebSocket or EventSource.
       // If not allowed the browser emulates a 400 HTTP status code.
-      connectSrc: IS_DEV ? ['https:', 'http'] : ['https:'],
+      connectSrc: ["'self'"],
 
       // Valid sources of fonts
       fontSrc: ['https://fonts.gstatic.com/'],

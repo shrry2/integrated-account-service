@@ -14,7 +14,7 @@ i18n
     debug: DEBUG,
     fallbackLng: 'en-US',
     load: 'currentOnly',
-    ns: ['master'],
+    ns: ['master', 'pages', 'components'],
     defaultNS: 'master',
     interpolation: {
       escapeValue: false, // not needed for react!!

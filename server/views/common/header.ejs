@@ -52,7 +52,7 @@
     <meta name="description" content="<%=getMeta('description')%>" />
     <%-loadStyles()%>
 </head>
-<body>
+<body<%- typeof bodyClass === 'string' ? ` class="${bodyClass}"` : '' %>>
     <div id="flash-message-popup">
         <noscript>
             <div id="wrapper" class="red">

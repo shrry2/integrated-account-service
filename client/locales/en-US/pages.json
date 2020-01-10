@@ -1,0 +1,30 @@
+{
+  "signup": {
+    "title": "Create Your Account",
+    "labels": {
+      "displayName": "Display Name",
+      "email": "Email",
+      "back": "Back",
+      "next": "Next",
+      "confirmed": "Yes, I Confirmed",
+      "tos": "Terms of Service",
+      "pp": "Privacy Policy",
+      "tryAgain": "Try Again"
+    },
+    "form": {
+      "heading": "Please tell us a bit about yourself",
+      "pleaseAgree": "To create your account, you need to agree with our terms of service and privacy policy",
+      "agreement": "I agree with the terms of service and privacy policy",
+      "generalError": "Please check the error above"
+    },
+    "confirmation": {
+      "heading": "Nice to meet you, {{name}}! We'll send a greeting to the address below. Is it fine?"
+    },
+    "completed": {
+      "heading": "Please check your mailbox!",
+      "mainGuidance": "We have sent a message with a link to setup your account to {{email}}",
+      "notReceiving": "In case you do not receive the email",
+      "notReceivingGuidance": "Please check the spam mail folder and the address you entered. If you still can not find it, you can try again from the beginning."
+    }
+  }
+}

@@ -1,6 +1,7 @@
 const { Router } = require('express');
 
 const signupRoutes = require('./signup');
+const localesRoutes = require('./locales');
 
 const indexRouter = Router();
 
@@ -10,5 +11,7 @@ indexRouter.get('/', (req, res, next) => {
 });
 
 indexRouter.use('/signup', signupRoutes);
+
+indexRouter.use('/_/locales', localesRoutes);
 
 module.exports = indexRouter;

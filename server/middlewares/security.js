@@ -1,10 +1,11 @@
-const config = require('config');
 const hpp = require('hpp');
 const helmet = require('helmet');
 const uuidv4 = require('uuid/v4');
+const Boom = require('@hapi/boom');
+
+const csrf = require('./csrf');
 
 const securityMiddleware = (app) => {
-  const IS_DEV = app.get('env') === 'development';
 
   // Prevent HTTP Parameter pollution
   app.use(hpp());
@@ -82,6 +83,32 @@ const securityMiddleware = (app) => {
   };
 
   app.use(helmet.contentSecurityPolicy(cspConfig));
+
+  // load CSRF middleware
+  app.use(csrf);
+
+  // set csrf token to view locals
+  app.use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+  });
+
+  // csrf token error handler
+  app.use((err, req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+
+    // catch only csrf token error
+    if (err.code === 'EBADCSRFTOKEN') {
+      // if in dev env and csrf check disable flag is on,
+      // ignore csrf check error
+      if ((req.app.get('env') === 'development') && req.query.nocsrf === '1') {
+        return next();
+      }
+
+      return next(Boom.forbidden('CSRF Token Error'));
+    }
+    next(err);
+  });
 };
 
 module.exports = securityMiddleware;

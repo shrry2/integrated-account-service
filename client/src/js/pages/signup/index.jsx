@@ -11,6 +11,8 @@ import BasicInformationForm from './BasicInformationForm';
 import ConfirmationForm from './ConfirmationForm';
 import CompletedMessage from './CompletedMessage';
 
+import ApiClient from '../../utils/ApiClient';
+
 import {
   View,
   Heading,
@@ -25,6 +27,9 @@ function SignupComponent() {
   const [email, setEmail] = useState('test@test.com');
   const [agreement, setAgreement] = useState(false);
 
+  /**
+   * set user input values (already validated)
+   */
   const receiveBasicInformation = (userInput) => {
     setDisplayName(userInput.displayName);
     setEmail(userInput.email);
@@ -32,14 +37,30 @@ function SignupComponent() {
     setStage(2);
   };
 
-  const sendSignupRequest = () => {
-    setStage(3);
+  /**
+   * communicate with server
+   */
+  const sendSignupRequest = async () => {
+    const api = new ApiClient();
+
+    const result = await api.post('/signup/_/request_setup_email', {
+      displayName,
+      email,
+    });
+
+    console.log(result);
+
+    if (result) {
+      setStage(3);
+    } else {
+      setStage(99);
+    }
   };
 
+  /**
+   * navigate to the first stage
+   */
   const handleTryAgain = () => {
-    setDisplayName('');
-    setEmail('');
-    setAgreement(false);
     setStage(1);
   };
 
@@ -72,6 +93,10 @@ function SignupComponent() {
                 email={email}
                 tryAgain={handleTryAgain}
               />
+            );
+          case 99:
+            return (
+              <div>ERROR</div>
             );
           default:
             setStage(1);

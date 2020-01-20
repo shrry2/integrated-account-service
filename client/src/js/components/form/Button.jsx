@@ -25,9 +25,10 @@ const StyledButton = styled.button`
   transition-duration: .1s;
 
   &:hover {
-    color: ${({ buttonTheme }) => buttonTheme.hoverText};
     cursor: pointer;
+    color: ${({ buttonTheme }) => buttonTheme.hoverText};
     background: ${({ buttonTheme }) => buttonTheme.hoverBg};
+    border-color: ${({ buttonTheme }) => buttonTheme.hoverBorder};
   }
 
   &:active,
@@ -35,6 +36,7 @@ const StyledButton = styled.button`
     color: ${({ buttonTheme }) => buttonTheme.hoverText};
     box-shadow: 0 0 0 3px ${({ shadowColor }) => shadowColor};
     background: ${({ buttonTheme }) => buttonTheme.hoverBg};
+    border-color: ${({ buttonTheme }) => buttonTheme.hoverBorder};
   }
 `;
 

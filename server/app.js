@@ -15,6 +15,7 @@ const secureApp = require('./middlewares/security');
 const errorHandler = require('./middlewares/error-handler');
 const tooBusy = require('./middlewares/toobusy');
 const serveStatic = require('./middlewares/static-file');
+const session = require('./middlewares/session');
 
 const filters = require('./middlewares/filters');
 
@@ -60,6 +61,9 @@ db.init(app);
 
 // Security
 secureApp(app);
+
+// Session
+app.use(session);
 
 // Filters
 app.use(filters);

@@ -15,10 +15,10 @@ const init = () => {
     .use(backend)
     .use(middleware.LanguageDetector)
     .init({
-      ns: ['master', 'errors', 'pages'],
-      defaultNS: 'master',
+      ns: ['common', 'server_master', 'errors', 'pages', 'routes', 'validators'],
+      defaultNS: 'server_master',
       backend: {
-        loadPath: path.join(__dirname, '../locales/{{lng}}/{{ns}}.json'),
+        loadPath: path.join(__dirname, '../../shared/locales/{{lng}}/{{ns}}.json'),
       },
       // debug: true,
       initImmediate: false,

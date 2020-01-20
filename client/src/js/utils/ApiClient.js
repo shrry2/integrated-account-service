@@ -28,7 +28,7 @@ class ApiClient {
     return this.currentRequest;
   }
 
-  errorHandler(error) {
+  generateError(error) {
     // TODO: Log it!
     console.log(`Error handler called for request ID: ${this.currentRequest.requestId}`);
 
@@ -75,7 +75,7 @@ class ApiClient {
       const response = await request.get(url, { params });
       return response.data;
     } catch (error) {
-      throw this.errorHandler(error);
+      throw this.generateError(error);
     }
   }
 
@@ -85,7 +85,7 @@ class ApiClient {
       const response = await request.post(url, data);
       return response.data;
     } catch (error) {
-      throw this.errorHandler(error);
+      throw this.generateError(error);
     }
   }
 }

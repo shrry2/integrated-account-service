@@ -1,0 +1,11 @@
+{
+  "signup": {
+    "request_setup_email": {
+
+    }
+  },
+  "locales": {
+    "missingRequiredQuery": "Missing required queries.",
+    "badQuery": "Some of the queries you sent was wrong."
+  }
+}

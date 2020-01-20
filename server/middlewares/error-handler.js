@@ -4,31 +4,23 @@
 const Boom = require('@hapi/boom');
 const { IS_DEV } = require('../constants');
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (rawError, req, res, next) => {
   if (res.headersSent) {
-    return next(err);
+    return next(rawError);
   }
 
   const { t } = req;
 
-  const error = err.statusCode ? err : Boom.boomify(err);
-
-  if (error.message === 'CSRF token missing' || error.message === 'CSRF token mismatch') {
-    error.isServer = false;
-    error.output = {
-      statusCode: 403,
-      payload: {
-        statusCode: 403,
-        error: t('errors:csrf_token_error.title'),
-        message: t('errors:csrf_token_error.message'),
-      },
-    };
-  }
+  const error = Boom.isBoom(rawError) ? rawError : Boom.boomify(rawError);
 
   if (error.isServer || IS_DEV) {
     // Server Error => Log it!
     // Development environment => Display any errors
-    req.logger.error('Error handler captured the error: ', error);
+    req.logger.error(error);
+  }
+
+  if (error.message === 'CSRF Token Error') {
+    error.output.payload.message = t('errors:csrf_token_error.message');
   }
 
   const statusCode = error.isBoom
@@ -43,6 +35,12 @@ const errorHandler = (err, req, res, next) => {
     title: t(`errors:${payload.error}.title`),
     message: payload.message,
   };
+
+  // try to translate if error message seems to be a translation id
+  const re = /.*[:.].*/;
+  if (re.test(payload.message)) {
+    localized.message = t(payload.message);
+  }
 
   // custom error message is not set
   if (payload.message === payload.error) {

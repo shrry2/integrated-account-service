@@ -1,0 +1,27 @@
+{
+  "${error}": {
+    "message": "",
+    "title": ""
+  },
+  "Not Found": {
+    "title": "Not Found",
+    "message": "The page or resource you have requested was not found on our server."
+  },
+  "tooBusy": "The server is temporary very busy and could not process your request. Please try again in a few moment.",
+  "Internal Server Error": {
+    "title": "Internal Server Error",
+    "message": "We are sorry but something went wrong on our server while processing your request. Kindly try again after a while or please let us know the details of your action."
+  },
+  "csrf_token_error": {
+    "message": "The server could not validate your request. Please try again or contact our support."
+  },
+  "Forbidden": {
+    "title": "Forbidden",
+    "message": "You are not allowed to access this area or you are not authenticated as a right user."
+  },
+  "Bad Request": {
+    "title": "Bad Request",
+    "message": "Processing your request was aborted because some of data you sent was incorrect."
+  },
+  "missingRequiredData": "Processing your request was aborted because some of required data was missing."
+}

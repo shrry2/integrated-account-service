@@ -13,6 +13,14 @@ const theme = {
         hoverBorder: '#00a960',
         hoverText: '#fff',
       },
+      primary: {
+        bg: '#00a960',
+        border: '#00a960',
+        text: '#fff',
+        hoverBg: '#00834b',
+        hoverBorder: '#00834b',
+        hoverText: '#fff',
+      },
       gloomy: {
         bg: '#fff',
         border: '#afafaf',

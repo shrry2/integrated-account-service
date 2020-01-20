@@ -1,0 +1,11 @@
+{
+  "signup": {
+    "request_setup_email": {
+
+    }
+  },
+  "locales": {
+    "missingRequiredQuery": "必要なクエリが送信されませんでした",
+    "badQuery": "送信されたクエリの一部が不正です"
+  }
+}

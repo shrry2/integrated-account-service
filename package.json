@@ -1,8 +1,11 @@
 {
   "name": "account",
   "scripts": {
+    "startServer:mysql": "mysql.server start",
+    "startServer:redis": "redis-server",
+    "startServer:node": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
-    "dev:server": "mysql.server start && cd server && npm run dev",
+    "dev:server": "run-p startServer:*",
     "dev": "run-p dev:*",
     "build:client": "cd client && npm run build"
   },

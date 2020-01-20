@@ -39,7 +39,7 @@ function ConfirmationForm(props) {
       <EmailWrapper>{email}</EmailWrapper>
       <BottomContainer>
         <Button type="button" onClick={goBack} theme="gloomy">{t('pages:signup.labels.back')}</Button>
-        <Button type="button" onClick={onConfirmed}>{t('pages:signup.labels.confirmed')}</Button>
+        <Button type="button" onClick={onConfirmed} theme="primary">{t('pages:signup.labels.confirmed')}</Button>
       </BottomContainer>
     </>
   );

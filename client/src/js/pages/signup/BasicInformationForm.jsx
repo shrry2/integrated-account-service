@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useTranslation } from 'react-i18next';
 
-import Validator from '../../../../../shared/validator';
+import validators from '../../../../../shared/validators';
 
 import {
   Guidance,
@@ -59,16 +59,13 @@ function BasicInformationForm(props) {
     });
   };
 
-  // Validators
-  const validator = new Validator(i18n.language);
-
   const validate = (field, value) => {
     let errorMessage = null;
     setGeneralError(null);
     try {
-      updateField(field, validator[field](value));
+      updateField(field, validators[field](value));
     } catch (error) {
-      errorMessage = error.message;
+      errorMessage = t(`validators:${error.message}`);
     }
     setError(field, errorMessage);
 
@@ -90,8 +87,8 @@ function BasicInformationForm(props) {
     validate(event.target.name, event.target.value);
   };
 
-  const handleSubmit = (formSubmitEvent) => {
-    formSubmitEvent.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     // Run validation for all form fields
     let noError = true;
@@ -179,7 +176,7 @@ function BasicInformationForm(props) {
         <BottomWrapper>
           { generalError && <ErrorMessage>{generalError}</ErrorMessage>}
           <RightAlign>
-            <Button type="submit">{t('pages:signup.labels.next')}</Button>
+            <Button type="submit" theme="primary">{t('pages:signup.labels.next')}</Button>
           </RightAlign>
         </BottomWrapper>
       </form>

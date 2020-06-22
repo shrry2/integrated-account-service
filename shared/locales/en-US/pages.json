@@ -1,6 +1,6 @@
 {
   "signup": {
-    "title": "Create Your Account",
+    "title": "New AmID Creation",
     "labels": {
       "displayName": "Display Name",
       "email": "Email",
@@ -9,22 +9,196 @@
       "confirmed": "Yes, I Confirmed",
       "tos": "Terms of Service",
       "pp": "Privacy Policy",
-      "tryAgain": "Try Again"
+      "noReceive": "I don't receive the email",
+      "tryAgain": "Try Again",
+      "mobilePhone": "Mobile Number"
     },
     "form": {
-      "heading": "Please tell us a bit about yourself",
+      "displayNameHeading": "How should we call you?",
       "pleaseAgree": "To create your account, you need to agree with our terms of service and privacy policy",
       "agreement": "I agree with the terms of service and privacy policy",
-      "generalError": "Please check the error above"
+      "generalError": "Please check the error above",
+      "contactHeading": "Contact information is only used for necessary contacts and not published",
+      "displayNameHint": "This name will be displayed to others",
+      "mobilePhoneHint": "Non United States phone numbers must be a international number format beginning with +",
+      "switchToEmail": "Register with email instead",
+      "switchToMobilePhone": "Register with mobile number instead",
+      "checkTermsWarning": "Please check {{remaining}} before agreement"
     },
     "confirmation": {
-      "heading": "Nice to meet you, {{name}}! We'll send a greeting to the address below. Is it fine?"
+      "headingWithMobilePhone": "Nice to meet you, {{name}}! We'll send a verification code to get the next step to the mobile number below. Is there no problem with that?",
+      "headingWithEmail": "Nice to meet you, {{name}}! We'll send a link to get the next step to the address below. Is there no problem with that?"
     },
-    "completed": {
+    "codeVerification": {
+      "heading": "Please enter the verification code",
+      "guidance": "We sent a verification code of 6 digits to {{phoneNumber}}.",
+      "processing": "Validating the code",
+      "notReceiving": "In case you do not receive the message",
+      "resendCode": "Resend new verification code",
+      "or": "or",
+      "tryAgain": "Try again from the beginning",
+      "resendSuccess": "New verification code has been sent."
+    },
+    "emailMessage": {
       "heading": "Please check your mailbox!",
-      "mainGuidance": "We have sent a message with a link to setup your account to {{email}}",
+      "mainGuidance": "We sent a message with a link to setup your account to {{email}}",
       "notReceiving": "In case you do not receive the email",
       "notReceivingGuidance": "Please check the spam mail folder and the address you entered. If you still can not find it, you can try again from the beginning."
+    },
+    "sessionContinue": {
+      "heading": "Your AmID has been created!",
+      "question": "Would you like to stay signed in?",
+      "hint": "Not recommended if this device is shared with someone.",
+      "yes": "Stay signed in for 1 week",
+      "no": "Sign out on closing the browser",
+      "signin": "Sign in"
+    },
+    "emailVerified": {
+      "heading": "Final check",
+      "guidance": "Are you sure you want to register {{email}} as {{displayName}}'s primary email address?"
+    }
+  },
+  "dashboard": {
+    "title": "Account Dashboard",
+    "accountMenu": {
+      "profilePictureAlt": "Profile Picture"
+    },
+    "accountSwitcher": {
+      "addAccount": "Add other account",
+      "currentLanguage": "Language",
+      "signoutFromAll": "Sign out of all accounts",
+      "switchAccount": "Switch account",
+      "accountSwitched": "Account switched",
+      "accountSettings": "Account settings"
+    },
+    "languageSwitcher": {
+      "changeLanguage": "Change language",
+      "chooseLanguage": "Choose language"
+    },
+    "signoutConfirmation": {
+      "title": "Sign out",
+      "confirmation": {
+        "current": "Are you sure to sign out of currently using account（{{displayName}}?",
+        "all": "This browser has {{count}} signed-in accounts. Are you sure to sign out of all of them?",
+        "specific": "Are you sure to remove the account of {{displayName}} from this session?"
+      },
+      "yes": "Proceed",
+      "done": "Successfully signed out"
+    },
+    "pages": {
+      "home": {
+        "title": "Home"
+      },
+      "profile": {
+        "title": "Profile",
+        "description": "Your public information, such as your display name and profile image can be edit here and you can change the scope of sharing the information.",
+        "link": "Open profile"
+      },
+      "settings": {
+        "title": "Account Settings",
+        "description": "General non-public settings that allows you to use AmID according to your environment, such as your location and display language.",
+        "link": "Open account settings"
+      },
+      "contact": {
+        "title": "Contact Information",
+        "description": "You can edit your contact information, such as your email address and mobile number, that will be used for service contact and sign-in authentication.",
+        "link": "Open contact information"
+      },
+      "authAndSecurity": {
+        "title": "Authentication and Security",
+        "description": "You can set the authentication factor and flow when signing in to AmID. You can also see which devices have access to your account.",
+        "link": "Open authentication and security"
+      }
+    },
+    "home": {
+      "welcome": "Welcome to your account dashboard, {{userName}}",
+      "guidance": "The Account Dashboard allows you to centrally manage your account-related settings."
+    },
+    "profile": {
+      "title": "Profile",
+      "help": {
+        "displayName": "This name will be your identity. It doesn't need to be your real name.",
+        "profilePicture": "Profile picture will be shown in many places of the services. Please do not set inappropriate pictures."
+      },
+      "edit": "Edit {{field}}",
+      "updated": "Updated {{field}}",
+      "changeHistory": "Change history",
+      "historyDescription": "Once a history item is deleted, it cannot be restored. The latest history will be the current {{field}}.",
+      "noHistory": "No history",
+      "profilePicture": {
+        "guidance": "You can upload up to 10 images and switch from them.",
+        "uploadNewPicture": "Upload new picture",
+        "noPictures": "No Pictures",
+        "uploadedItem": "Uploaded picture",
+        "useThis": "Use this",
+        "delete": "Delete",
+        "deleteSuccess": "Picture was deleted",
+        "uploader": {
+          "selectPicture": "Tap here to select a file on your device or just drop it.",
+          "help": "Only image files (less than 5MB) are allowed to upload.",
+          "selectIconGuidance": "Please select your new profile picture",
+          "cropGuidance": "Let's crop your profile picture into squares",
+          "proceed": "OK",
+          "reselect": "Select other"
+        }
+      }
+    },
+    "settings": {
+      "title": "Account Settings",
+      "select": "Select {{field}}",
+      "updated": "{{field}} was updated",
+      "language": {
+        "title": "Display Language",
+        "helpText": "If available, we will provide services in your preferred language."
+      },
+      "timezone": {
+        "title": "Timezone",
+        "helpText": "Internal system uses the Coordinated Universal Time, but it converts and displays in the desired time zone."
+      }
+    },
+    "contact": {
+      "title": "Contact Information",
+      "description": "Your contact information will only be used to identify you for sign-in or send you necessary messages related to our services. It will never be used other than that without your permission.",
+      "email": {
+        "title": "Email"
+      },
+      "phone": {
+        "title": "Mobile phone"
+      }
+    }
+  },
+  "signin": {
+    "title": "Sign in",
+    "labels": {
+      "identifier": "Phone, Email or Sign-in Code",
+      "next": "Next"
+    },
+    "errors": {
+      "tokenExpired": "The sign-in process is taking too long. Please start over for security reasons."
+    },
+    "tokenExpireAlert": {
+      "oneMinuteWarning": "For security reasons, you will have to restart the sign-in process in one minute. Please hurry to the next step."
+    },
+    "enterCodeEmail": {
+      "headingBeforeSend": "Authenticate with your email",
+      "guidanceBeforeSend": "To verify your identity, we'll send a verification code to your registered primary email address.",
+      "send": "Send a verification code",
+      "heading": "Enter verification code",
+      "guidance": "We have sent a verification code to sign in to your registered email address.",
+      "resend": "Resend message",
+      "emailSent": "A verification code has been sent. It is valid for 5 minutes."
+    },
+    "enterCodePhone": {
+      "headingBeforeSend": "Authenticate with your mobile phone",
+      "guidanceBeforeSend": "To verify your identity, we'll send a verification code to your registered mobile phone number.",
+      "guidance": "We have sent a verification code to sign in to your registered email address."
+    },
+    "sessionContinue": {
+      "heading": "All authentications completed!",
+      "question": "Would you like to stay signed in?",
+      "hint": "This setting will reduce the number of sign-ins, but NOT recommended if this device is shared with someone.",
+      "yes": "Stay signed in for 1 week",
+      "no": "Sign out on closing the browser"
     }
   }
 }

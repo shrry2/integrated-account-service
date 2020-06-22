@@ -1,0 +1,29 @@
+<%
+    // prepare shared data if provided
+    let initialStateTag = null;
+    if (typeof initialState === 'object') {
+      initialStateTag = `<script nonce="${nonce}" type="text/javascript">window.__INITIAL_STATE__ = ${JSON.stringify(initialState).replace(/</g, '\\u003c')};</script>`;
+    }
+%><!DOCTYPE html>
+<html lang="<%=language%>">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="csrf-token" content="<%=csrfToken%>" />
+
+    <title>AmID</title>
+    <meta name="description" content="<%=t('defaultMeta.description')%>" />
+    <link rel="stylesheet" href="<%=bundleUrl%>style.css" />
+</head>
+<body class="dashboard-root">
+<div id="root">
+    <div class="loading-message">
+        <div class="loader">Loading...</div>
+        Loading Application
+    </div>
+</div>
+<%-initialStateTag-%>
+<script src="<%=bundleUrl%>dashboard.js"></script>
+</body>
+</html>

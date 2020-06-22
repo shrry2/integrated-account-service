@@ -1,10 +1,13 @@
 <%- include('common/header'); -%>
-<div class="errorPage container-sm">
+<div class="error-page global-container">
     <h1>
         <span class="statusCode"><%= statusCode %></span><br>
         <%= title %>
     </h1>
-    <p class="message"><%= message %></p>
+    <div class="details">
+        <div class="message"><%= message %></div>
+        <footer>Request ID: <code><%= requestId %></code></footer>
+    </div>
     <% if (error) { %>
     <pre><%= error.stack %></pre>
     <% } %>

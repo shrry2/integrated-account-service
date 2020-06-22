@@ -16,16 +16,22 @@ const errorHandler = require('./middlewares/error-handler');
 const tooBusy = require('./middlewares/toobusy');
 const serveStatic = require('./middlewares/static-file');
 const session = require('./middlewares/session');
+const requestIdChecker = require('./middlewares/request-id-checker');
+
+const db = require('./models');
 
 const filters = require('./middlewares/filters');
 
 const allRoutes = require('./routes');
 
-const db = require('./models');
-
 const app = express();
 
 const logger = require('./utils/logger')(app);
+
+app.set('baseURL', 'http://localhost:3000/');
+
+// check request ID
+app.use(requestIdChecker);
 
 // Add Request ID
 app.use(addRequestId());
@@ -56,13 +62,13 @@ app.use(cookieParser());
 // Host Static Files
 serveStatic(app);
 
-// Initialize database
-db.init(app);
+// Test database connection
+db.testConnection(app.logger);
 
 // Security
 secureApp(app);
 
-// Session
+// SessionStore
 app.use(session);
 
 // Filters

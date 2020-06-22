@@ -23,5 +23,22 @@
     "title": "Bad Request",
     "message": "Processing your request was aborted because some of data you sent was incorrect."
   },
-  "missingRequiredData": "Processing your request was aborted because some of required data was missing."
+  "Too Many Requests": {
+    "title": "Too Many Requests",
+    "message": "You have exceeded your request limit. Please try again after a while."
+  },
+  "Locked": {
+    "title": "Locked",
+    "message": "The resource you requested is not accessible because it is locked,"
+  },
+  "Unauthorized": {
+    "title": "Unauthorized",
+    "message": "You need to be authorized to access this resource."
+  },
+  "Unprocessable Entity": {
+    "title": "Unprocessable Entity",
+    "message": "Something is wrong with your request so we rejected to process it."
+  },
+  "missingRequiredData": "Processing your request was aborted because some of required data was missing.",
+  "invalidData": "Your request data is not suitable for this endpoint."
 }

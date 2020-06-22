@@ -5,7 +5,7 @@
   "database": {
     "username": "root",
     "password": "root",
-    "database": "doriths_account_dev",
+    "database": "account_database_dev",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

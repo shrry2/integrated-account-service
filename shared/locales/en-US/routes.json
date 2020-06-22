@@ -1,11 +1,53 @@
 {
   "signup": {
-    "request_setup_email": {
-
+    "create_signup": {
+      "phoneExists": "An account with the phone number you entered already exists. Try sign in instead.",
+      "emailExists": "An account with the email you entered already exists. Try sign in instead.",
+      "reissueDenied": "A verification code has been issued just before. Please check the receiving again, then please try again more than 5 minutes later."
+    },
+    "verify_code": {
+      "codeUnavailable": "This verification code is no longer available as it's already expired. Please reissue a new code.",
+      "maxRetryExceeded": "The last code we sent is no longer available due to a series of incorrect codes. Please reissue a new code.",
+      "invalidCode": "The code you entered is invalid. Please try again."
+    },
+    "verify": {
+      "badLink": "This verification link is not available. It might have expired."
+    },
+    "continue_session": {
+      "expired": "We could not continue your session due to security reasons. Please sign into your account."
+    }
+  },
+  "signin": {
+    "errors": {
+      "invalidToken": "The token presented is invalid. Please try again from the beginning.",
+      "alreadySignedIn": "You are already signed in to this account."
+    },
+    "create": {
+      "notFound": "We searched every corner of the database but couldn't find an account."
+    },
+    "email": {
+      "verify": {
+        "pleaseReissue": "The email we sent lastly is no longer available. Please send it again.",
+        "maxAttemptsError": "The last code we sent is no longer available due to a series of incorrect codes. Please reissue a new code.",
+        "invalidCodeError": "The code you entered is invalid.",
+        "expiredCodeError": "This verification code is no longer available as it's already expired. Please reissue a new code."
+      }
     }
   },
   "locales": {
     "missingRequiredQuery": "Missing required queries.",
     "badQuery": "Some of the queries you sent was wrong."
+  },
+  "client": {
+    "dashboard": {
+      "profile": {
+        "displayName": {
+          "lastOneError": "Only the last one cannot be deleted."
+        },
+        "profilePicture": {
+          "limitExceeded": "You have exceeded the maximum number of profile pictures that can be saved in your library. Delete some items and try again"
+        }
+      }
+    }
   }
 }

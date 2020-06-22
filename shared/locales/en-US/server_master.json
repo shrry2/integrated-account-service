@@ -1,6 +1,6 @@
 {
   "defaultMeta": {
-    "description": "SERVICE_NAME Account lets you use our services."
+    "description": "AmID lets you use our services more usefully."
   },
   "footer": {
     "privacy": "Privacy Policy",
@@ -10,7 +10,8 @@
     "enable_javascript": {
       "message": "Most of the service doesn't work properly without JavaScript. Please enable it and reload the page.",
       "title": "Please Enable JavaScript"
-    }
+    },
+    "backToTop": "Back to top"
   },
   "hello": "Hello, World!"
 }

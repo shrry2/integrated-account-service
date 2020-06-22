@@ -1,1 +1,15 @@
-{}
+{
+  "and": "and",
+  "andWithSpace": " and ",
+  "signup": "sign up",
+  "signin": "sign in",
+  "signout": "sign out",
+  "Error": "Error",
+  "displayName": "Display name",
+  "email": "Email address",
+  "profilePicture": "Profile picture",
+  "NotSet": "Not set",
+  "loading": "loading",
+  "loadFailed": "Failed to load",
+  "primary": "Primary"
+}

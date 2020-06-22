@@ -15,15 +15,23 @@
   -webkit-overflow-scrolling: touch;
   outline: none;
   padding: 1rem;
+  padding-bottom: 4rem;
 
   max-width: 600px;
   margin: 0 auto;
 
+  color: #333;
+
+  &.narrow {
+    max-width: 380px;
+  }
+
   @include lg {
     top: 2rem;
-    bottom: 1rem;
+    bottom: auto;
     border: 1px solid #333;
     border-radius: 5px;
+    margin-bottom: 2rem;
   }
 
   header {
@@ -40,11 +48,15 @@
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.85);
+    z-index: 3000;
+    overflow: scroll;
   }
 
   &--close-button {
-    display: inline-block;
+    display: inline-flex;
     outline: none;
+    align-items: center;
+    justify-content: center;
 
     letter-spacing: .05rem;
 
@@ -52,6 +64,8 @@
     height: 50px;
     text-align: center;
     box-sizing: border-box;
+
+    padding: 0;
 
     border: 1px solid #333;
     border-radius: 4px;
@@ -75,4 +89,8 @@
       box-shadow: 0 0 0 3px #888;
     }
   }
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
 }

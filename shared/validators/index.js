@@ -1,4 +1,5 @@
 const validator = require('validator');
+const libphonenumber = require('libphonenumber-js/max');
 
 const locales = require('../global/locales');
 const localeCodes = [];
@@ -11,6 +12,14 @@ const isString = (value) => {
 };
 
 let validators = {};
+
+validators.notEmpty = (value, trim = true) => {
+  if (! isString(value)) throw new Error('invalidString');
+  if (trim) value = value.trim();
+  if (value.length === 0) throw new Error('empty');
+
+  return value;
+};
 
 /**
  * Display Name Validator
@@ -125,6 +134,64 @@ validators.translationNamespace = (ns) => {
   if (! regexp.test(ns)) throw new Error('translationNamespace.invalidFormat');
 
   return ns;
+};
+
+
+validators.uuid = (uuid) => {
+    if (! validator.isUUID(uuid)) throw new Error('uuid.invalid');
+
+    return uuid;
+};
+
+validators.mobilePhone = (phoneNumber, defaultCountry = null) => {
+  if (typeof phoneNumber !== 'string') phoneNumber = phoneNumber + '';
+
+  if (phoneNumber.length === 0) {
+    throw new Error('mobilePhone.empty');
+  }
+
+  const { parsePhoneNumberFromString } = libphonenumber;
+  let phoneNumberParsed;
+  if (typeof defaultCountry === 'string' && defaultCountry.length === 2) {
+    phoneNumberParsed = parsePhoneNumberFromString(phoneNumber, defaultCountry);
+  } else {
+    phoneNumberParsed = parsePhoneNumberFromString(phoneNumber);
+  }
+
+  if (!phoneNumberParsed) {
+    throw new Error('mobilePhone.unrecognizable');
+  }
+
+  if (!phoneNumberParsed.isValid()) {
+    throw new Error('mobilePhone.invalid');
+  }
+
+  const type = phoneNumberParsed.getType();
+  if (type !== 'MOBILE' && type !=='FIXED_LINE_OR_MOBILE') {
+    throw new Error('mobilePhone.notMobile');
+  }
+
+  // determine normalized format according to default country
+  if (phoneNumberParsed.country === defaultCountry) {
+    return phoneNumberParsed.formatNational();
+  }
+
+  return phoneNumberParsed.formatInternational();
+};
+
+validators.formatPhoneNumber = (phoneNumber, format = 'E.164', country = null) => {
+  if (typeof phoneNumber !== 'string') phoneNumber = phoneNumber + '';
+
+  const { parsePhoneNumberFromString } = libphonenumber;
+
+  let phoneNumberParsed;
+  if (typeof country === 'string' && country.length === 2) {
+    phoneNumberParsed = parsePhoneNumberFromString(phoneNumber, country);
+  } else {
+    phoneNumberParsed = parsePhoneNumberFromString(phoneNumber);
+  }
+
+  return phoneNumberParsed.format(format);
 };
 
 module.exports = validators;

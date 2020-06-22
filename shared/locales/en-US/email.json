@@ -1,0 +1,36 @@
+{
+  "common": {
+    "bestRegards": "Best regards,"
+  },
+  "signup": {
+    "v1": {
+      "subject": "Set up your AmID",
+      "welcome": "Welcome, {{userName}}",
+      "permission": "You received this email because we have received a request for signing up with our website using this address. If you didn't request it, you can safely delete this email.",
+      "bestRegards": "Best regards,",
+      "text": {
+        "message": "Thank you for your AmID creation request. To continue setting up your account, please access to the url below and follow the instructions."
+      },
+      "html": {
+        "preheader": "Please check the url in this message to continue the account creation.",
+        "message": "Thank you for your AmID creation request. To continue setting up your account, please click the button below and follow the instructions.",
+        "setupButtonText": "Setup Your Account",
+        "ifButtonNotWorking": "If the button is not working, please copy and paste this URL on your browser: "
+      }
+    }
+  },
+  "signin": {
+    "v1": {
+      "subject": "AmID Sign-in Verification Code",
+      "welcomeBack": "Welcome back, {{userName}}",
+      "permission": "This email was sent because we have received a request to sign in to your account. If not, someone may be trying to hack your account. Don't give the code to anyone and contact our support.",
+      "text": {
+        "message": "To sign in to your account, please enter the verification code below (6 digits number) in the sign-in form."
+      },
+      "html": {
+        "preheader": "Please enter the verification code in this message to sign in to your account.",
+        "message": "This is the verification code to sign in to your account. Please enter the code in the sign-in form."
+      }
+    }
+  }
+}

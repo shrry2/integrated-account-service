@@ -1,5 +1,8 @@
 {
   "modal": {
     "closeButtonAriaLabel": "とじる"
+  },
+  "ProcessingLoader": {
+    "defaultMessage": "処理中です..."
   }
 }

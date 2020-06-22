@@ -4,25 +4,31 @@ import uuidv4 from 'uuid/v4';
 class ApiClient {
   constructor() {
     const csrfMetaDOM = document.querySelector('meta[name="csrf-token"]');
-    if (csrfMetaDOM) {
-      this.csrfToken = csrfMetaDOM.getAttribute('content');
-    }
+    this.csrfToken = csrfMetaDOM.getAttribute('content');
+
     this.currentRequest = null;
   }
 
-  createRequest() {
+  createRequest(config = {}) {
+    // init request
+    this.currentRequest = null;
+
     // create new request ID
     const requestId = uuidv4();
 
     // create header
-    const headers = {};
-    headers['x-request-id'] = requestId;
-    if (this.csrfToken) {
-      headers['x-csrf-token'] = this.csrfToken;
+    const headers = {
+      'x-request-id': requestId,
+      'x-csrf-token': this.csrfToken,
+    };
+
+    const options = { ...config, headers };
+    if (config.headers) {
+      options.headers = { ...options.headers, ...config.headers };
     }
 
     // create request instance
-    this.currentRequest = axios.create({ headers });
+    this.currentRequest = axios.create(options);
     this.currentRequest.requestId = requestId;
 
     return this.currentRequest;
@@ -83,6 +89,61 @@ class ApiClient {
     const request = this.createRequest();
     try {
       const response = await request.post(url, data);
+      return response.data;
+    } catch (error) {
+      throw this.generateError(error);
+    }
+  }
+
+  async put(url, data) {
+    const request = this.createRequest();
+    try {
+      const response = await request.put(url, data);
+      return response.data;
+    } catch (error) {
+      throw this.generateError(error);
+    }
+  }
+
+  async delete(url) {
+    const request = this.createRequest();
+    try {
+      const response = await request.delete(url);
+      return response.data;
+    } catch (error) {
+      throw this.generateError(error);
+    }
+  }
+
+  async uploadImage(url, image, fieldName = 'image') {
+    const request = this.createRequest();
+    const form = new FormData();
+    form.append(fieldName, image);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    try {
+      const response = await request.post(url, form, config);
+      return response.data;
+    } catch (error) {
+      throw this.generateError(error);
+    }
+  }
+
+  async uploadImageWithCropData(url, image, cropData) {
+    const request = this.createRequest();
+    const form = new FormData();
+    form.append('image', image);
+    form.append('cropData', JSON.stringify(cropData));
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    try {
+      const response = await request.post(url, form, config);
       return response.data;
     } catch (error) {
       throw this.generateError(error);

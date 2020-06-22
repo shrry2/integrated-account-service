@@ -2,14 +2,15 @@
  * Logger
  */
 const { createLogger, format, transports } = require('winston');
+const { IS_DEV } = require('../constants');
 
-const getLogger = (isDev = false) => {
+const getLogger = () => {
   // Set log level
-  const logLevel = isDev ? 'debug' : 'info';
+  const logLevel = IS_DEV ? 'debug' : 'info';
 
   // Set transports
   let logTransports = [/* TODO: Add stackdriver support on production mode. */];
-  if (isDev) {
+  if (IS_DEV) {
     logTransports = [new transports.Console()];
   }
 
@@ -18,7 +19,7 @@ const getLogger = (isDev = false) => {
     format.timestamp(),
     format.json(),
   );
-  if (isDev) {
+  if (IS_DEV) {
     logFormat = format.combine(
       format.timestamp(),
       format.colorize({ all: true }),
@@ -35,7 +36,7 @@ const getLogger = (isDev = false) => {
 };
 
 const middleware = (app) => {
-  const logger = getLogger(app.get('env') === 'development');
+  const logger = getLogger();
   // eslint-disable-next-line no-param-reassign
   app.logger = logger;
   app.logger.info('Logger initialized and logging started.');

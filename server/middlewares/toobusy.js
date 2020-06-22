@@ -4,7 +4,7 @@ const toobusyMiddleware = () => (req, res, next) => {
   if (toobusy()) {
     res
       .status(503)
-      .end('errors:tooBusy.message');
+      .end('The server is too busy. Please try again later.');
   } else {
     next();
   }

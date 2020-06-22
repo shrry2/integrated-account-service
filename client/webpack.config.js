@@ -27,6 +27,8 @@ module.exports = (env, argv) => {
       main: `${src}/js/main.jsx`,
       style: `${src}/styles/style.scss`,
       signup: `${src}/js/pages/signup/index.jsx`,
+      signin: `${src}/js/pages/signin/index.jsx`,
+      dashboard: `${src}/js/pages/dashboard/index.jsx`,
     },
     devtool: IS_DEV ? 'source-map' : 'none',
     output: {
@@ -57,7 +59,7 @@ module.exports = (env, argv) => {
           loader: 'babel-loader',
         },
         {
-          test: /\.scss$/,
+          test: /\.(css|scss)$/,
           use: [
             { loader: MiniCssExtractPlugin.loader },
             {

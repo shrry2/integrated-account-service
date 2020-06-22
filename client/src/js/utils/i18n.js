@@ -4,8 +4,10 @@ import BackendAdapter from 'i18next-multiload-backend-adapter';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-const SERVER_URL = 'http://localhost:3000/_/locales';
-const DEBUG = true;
+const DEBUG = false;
+
+// TODO: Review it before deploy
+const SERVER_URL = `${window.location.protocol}//${window.location.host}/_/locales`;
 
 i18n
   .use(BackendAdapter)
@@ -25,7 +27,7 @@ i18n
       backendOption: {
         loadPath: `${SERVER_URL}?lng={{lng}}&ns={{ns}}`,
         allowMultiLoading: true,
-      }
+      },
     },
     detection: {
       order: ['htmlTag', 'cookie', 'querystring', 'localStorage', 'navigator', 'path', 'subdomain'],

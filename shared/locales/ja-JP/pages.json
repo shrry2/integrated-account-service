@@ -1,6 +1,6 @@
 {
   "signup": {
-    "title": "アカウントを作成",
+    "title": "AmIDの新規作成",
     "labels": {
       "displayName": "表示名",
       "email": "メールアドレス",
@@ -9,22 +9,197 @@
       "confirmed": "確認しました",
       "tos": "利用規約",
       "pp": "プライバシーポリシー",
-      "tryAgain": "もう一度試す"
+      "noReceive": "メールが届きません",
+      "tryAgain": "もう一度試す",
+      "mobilePhone": "携帯電話番号"
     },
     "form": {
-      "heading": "あなたについて少しだけ教えてください",
+      "displayNameHeading": "どのようにお呼びすればよろしいですか?",
       "pleaseAgree": "アカウントの作成には、利用規約とプライバシーポリシーへの同意が必要です",
       "agreement": "利用規約とプライバシーポリシーに同意します",
-      "generalError": "エラーをご確認ください"
+      "generalError": "エラーをご確認ください",
+      "contactHeading": "連絡先情報は必要な連絡のみに使用され、公開されることはありません",
+      "displayNameHint": "この名前は他のユーザーに表示されます",
+      "mobilePhoneHint": "日本国外の電話番号の場合は + で始まる国際電話番号形式で入力してください",
+      "switchToEmail": "代わりにメールアドレスを登録する",
+      "switchToMobilePhone": "代わりに携帯電話番号を登録する",
+      "checkTermsWarning": "{{remaining}}をご確認ください"
     },
     "confirmation": {
-      "heading": "はじめまして、{{name}}さん! 以下のメールアドレス宛にご挨拶をお送りします。よろしいですか?"
+      "headingWithMobilePhone": "はじめまして、{{name}}さん! 以下の電話番号に確認コードをお送りします。間違いはありませんか?",
+      "headingWithEmail": "はじめまして、{{name}}さん！ 以下のメールアドレスに手続きのためのリンクをお送りします。間違いはありませんか?"
     },
-    "completed": {
+    "codeVerification": {
+      "heading": "認証コードを入力してください",
+      "guidance": "6桁の数字からなる認証コードを、{{phoneNumber}}あてにお送りしました。",
+      "processing": "コードを検証しています",
+      "notReceiving": "メッセージが届かない場合",
+      "resendCode": "コードを再送信する",
+      "or": "または",
+      "tryAgain": "はじめからもう一度試す",
+      "resendSuccess": "新しい認証コードが送信されました"
+    },
+    "emailMessage": {
       "heading": "メールボックスをご確認ください",
       "mainGuidance": "{{email}}宛に、アカウントを設定するためのリンクをお送りしました。",
       "notReceiving": "メールが届かない場合",
       "notReceivingGuidance": "迷惑メールボックスと、入力したメールアドレスに間違いがないかご確認ください。それでもメールが見つからない場合は、もう一度お試しください。"
+    },
+    "sessionContinue": {
+      "heading": "AmIDの作成が完了しました!",
+      "question": "サインインしたままにしますか?",
+      "hint": "このデバイスをどなたかと共有されてる場合はおすすめしません。",
+      "yes": "1週間サインインしたままにする",
+      "no": "ブラウザ終了時にログアウトする",
+      "signin": "サインイン"
+    },
+    "emailVerified": {
+      "heading": "メールアドレスの最終確認",
+      "guidance": "{{email}}を{{displayName}}さまのメインメールアドレスとして登録してもよろしいですか?"
+    }
+  },
+  "dashboard": {
+    "title": "アカウントダッシュボード",
+    "accountMenu": {
+      "profilePictureAlt": "プロフィール画像"
+    },
+    "accountSwitcher": {
+      "addAccount": "他のアカウントを追加",
+      "currentLanguage": "利用言語",
+      "signoutFromAll": "すべてのアカウントからログアウト",
+      "switchAccount": "アカウントを切り替え",
+      "accountSwitched": "アカウントを切り替えました",
+      "accountSettings": "アカウント設定"
+    },
+    "languageSwitcher": {
+      "changeLanguage": "言語を変更",
+      "chooseLanguage": "言語を選んでください"
+    },
+    "signoutConfirmation": {
+      "title": "ログアウト",
+      "confirmation": {
+        "current": "現在利用中のアカウント（{{displayName}}）からログアウトしてよろしいですか?",
+        "all": "現在サインインしている{{count}}つのアカウントすべてからログアウトしてよろしいですか?",
+        "specific": "{{displayName}}さんのアカウントからログアウトしてよろしいですか?"
+      },
+      "yes": "ログアウトする",
+      "done": "ログアウトしました"
+    },
+    "pages": {
+      "home": {
+        "title": "ホーム"
+      },
+      "profile": {
+        "title": "プロフィール",
+        "description": "表示名やプロフィール画像など、サービスの利用時に公開する情報を設定したり、公開する範囲を変更することができます。",
+        "link": "プロフィールを開く"
+      },
+      "settings": {
+        "title": "アカウント設定",
+        "description": "お住いの地域や表示言語など、 AmID をお客様の環境にあわせてご利用いただくための全般的な非公開設定です。",
+        "link": "アカウント設定を開く"
+      },
+      "contact": {
+        "title": "連絡先",
+        "description": "メールアドレスや携帯電話番号などの、サービスからのご連絡やサインインにおける認証に用いるご連絡先の情報を変更することができます。",
+        "link": "連絡先を開く"
+      },
+      "authAndSecurity": {
+        "title": "認証とセキュリティ",
+        "description": "AmID へサインインする際の認証要素やフローを設定できます。また、あなたのアカウントへのアクセス権限を持つデバイスを確認できます。",
+        "link": "認証とセキュリティを開く"
+      }
+    },
+    "home": {
+      "welcome": "{{userName}}さん、アカウントダッシュボードへようこそ",
+      "guidance": "アカウントダッシュボードでは、あなたの AmID にかかわる設定を一元管理できます。"
+    },
+    "profile": {
+      "title": "プロフィール",
+      "help": {
+        "displayName": "他のユーザーに対して名乗る名前です。実名である必要はありません。",
+        "profilePicture": "プロフィール画像はサービスの様々なところで表示されます。不適切な画像の設定は禁じられています。"
+      },
+      "edit": "{{field}}を編集",
+      "updated": "{{field}}を更新しました",
+      "changeHistory": "変更履歴",
+      "historyDescription": "履歴を一度削除すると復元できません。最新の履歴が現在の{{field}}となります。",
+      "noHistory": "変更履歴はありません",
+      "profilePicture": {
+        "guidance": "画像を10件までアップロードして、その中から切り替えることができます。",
+        "uploadNewPicture": "新しい画像をアップロード",
+        "noPictures": "画像がありません",
+        "uploadedItem": "アップロードされた画像",
+        "useThis": "これを使う",
+        "delete": "削除",
+        "deleteSuccess": "画像を削除しました",
+        "uploader": {
+          "selectPicture": "ここをタップしてデバイス内のファイルを選択するか、ファイルをドロップしてください",
+          "help": "アップロード可能なファイルは5MBより小さい画像ファイルのみです",
+          "selectIconGuidance": "プロフィール画像として使用する画像を選択してください",
+          "cropGuidance": "プロフィール画像を正方形に切り取りましょう",
+          "proceed": "切り取る",
+          "reselect": "別の画像を選ぶ"
+        }
+      }
+    },
+    "settings": {
+      "title": "アカウント設定",
+      "select": "{{field}}を選択",
+      "updated": "{{field}}を変更しました",
+      "language": {
+        "title": "表示言語",
+        "helpText": "対応している場合、ご希望の言語でサービスをご提供いたします。"
+      },
+      "timezone": {
+        "title": "タイムゾーン",
+        "helpText": "内部システムは世界協定時刻を採用していますが、ご希望のローカル時刻に変換して表示します。"
+      }
+    },
+    "contact": {
+      "title": "連絡先",
+      "description": "あなたの連絡先情報は、サインインのための識別およびStaytが運営するサービスに関する連絡のみの目的で使用されます。許可なく公開されることはありません。",
+      "email": {
+        "title": "電子メール",
+        "modalLabel": "メールアドレスの詳細"
+      },
+      "phone": {
+        "title": "携帯電話"
+      }
+    }
+  },
+  "signin": {
+    "title": "サインイン",
+    "labels": {
+      "identifier": "電話・メール または サインインコード",
+      "next": "次へ"
+    },
+    "errors": {
+      "tokenExpired": "サインイン手続きに時間がかかりすぎています。セキュリティ上の理由によりはじめからやり直してください。"
+    },
+    "tokenExpireAlert": {
+      "oneMinuteWarning": "セキュリティ上の理由によりあと1分でサインイン手続きをはじめからやり直さなくてはならなくなります。急いで次のステップに進んでください。"
+    },
+    "enterCodeEmail": {
+      "headingBeforeSend": "メールアドレスで認証",
+      "guidanceBeforeSend": "本人確認のため、ご登録のメインメールアドレスに認証コードをお送りします。",
+      "send": "認証コードを送信",
+      "heading": "確認コードを入力してください",
+      "guidance": "サインインのための確認コードをご登録のメールアドレスににお送りしました。",
+      "resend": "メッセージを再送信",
+      "emailSent": "認証コードが送信されました。有効期限は5分間です。"
+    },
+    "enterCodePhone": {
+      "headingBeforeSend": "電話番号で認証",
+      "guidanceBeforeSend": "本人確認のため、ご登録の携帯電話番号に認証コードをお送りします。",
+      "guidance": "ご登録の携帯電話番号宛に認証コード付きのSMSをお送りしました。"
+    },
+    "sessionContinue": {
+      "heading": "すべての認証が完了しました!",
+      "question": "サインインしたままにしますか?",
+      "hint": "この設定によりサインインする回数を減らすことができますが、このデバイスをどなたかと共有されてる場合はおすすめしません。",
+      "yes": "1週間サインインしたままにする",
+      "no": "ブラウザ終了時にログアウトする"
     }
   }
 }

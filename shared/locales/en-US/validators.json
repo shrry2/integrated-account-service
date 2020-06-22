@@ -1,7 +1,7 @@
 {
   "invalidString": "The input value is not valid as string",
   "invalidBoolean": "The input value is not valid as boolean",
-  "empty": "Please fill in the field",
+  "empty": "Please fill in this field",
   "displayName": {
     "empty": "Please enter the display name",
     "tooLong": "It's too long. The maximum length is 50 characters"
@@ -13,5 +13,11 @@
   },
   "agreement": {
     "needAgreement": "You need to agree with this item"
+  },
+  "mobilePhone": {
+    "empty": "Please enter your mobile phone number",
+    "unrecognizable": "Unrecognizable as phone number used in any country. Try entering as an international phone number starting with +",
+    "invalid": "The phone number you entered is not valid as a phone number",
+    "notMobile": "The phone number you entered is not a MOBILE phone number"
   }
 }

@@ -1,5 +1,8 @@
 {
   "modal": {
     "closeButtonAriaLabel": "close"
+  },
+  "ProcessingLoader": {
+    "defaultMessage": "Processing..."
   }
 }

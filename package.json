@@ -1,9 +1,8 @@
 {
-  "name": "account",
+  "name": "AmID",
   "scripts": {
     "startServer:mysql": "mysql.server start",
-    "startServer:redis": "redis-server",
-    "startServer:node": "cd server && npm run dev",
+    "startServer:node": "cd server && source ./database.env && source ./credentials.env && npm run dev",
     "dev:client": "cd client && npm run dev",
     "dev:server": "run-p startServer:*",
     "dev": "run-p dev:*",
@@ -14,6 +13,7 @@
   },
   "dependencies": {
     "i18next": "^19.0.2",
+    "libphonenumber-js": "^1.7.40",
     "validator": "^12.1.0"
   }
 }

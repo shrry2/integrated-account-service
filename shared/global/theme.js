@@ -1,21 +1,27 @@
+const primaryGreen = '#00a960';
+
 const theme = {
+  colors: {
+    link: '#4169e1',
+  },
   base: {
-    default: '#FAACA8',
+    default: primaryGreen,
+    focus: '#4169e1',
   },
   form: {
-    input: '#00984f',
+    input: primaryGreen,
     button: {
       default: {
         bg: '#fff',
-        border: '#00a960',
-        text: '#00a960',
-        hoverBg: '#00a960',
-        hoverBorder: '#00a960',
+        border: primaryGreen,
+        text: primaryGreen,
+        hoverBg: primaryGreen,
+        hoverBorder: primaryGreen,
         hoverText: '#fff',
       },
       primary: {
-        bg: '#00a960',
-        border: '#00a960',
+        bg: primaryGreen,
+        border: primaryGreen,
         text: '#fff',
         hoverBg: '#00834b',
         hoverBorder: '#00834b',

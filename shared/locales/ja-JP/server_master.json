@@ -4,13 +4,14 @@
   },
   "footer": {
     "privacy": "プライバシーポリシー",
-    "terms": "規約"
+    "terms": "利用規約"
   },
   "header": {
     "enable_javascript": {
       "message": "本サイトを正常に動作させるにはJavaScriptが必要です。有効にしたあとページを再読込してください。",
       "title": "JavaScriptを有効にしてください"
-    }
+    },
+    "backToTop": "トップに戻る"
   },
   "hello": "こんにちは、世界"
 }

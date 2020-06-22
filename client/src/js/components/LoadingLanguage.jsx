@@ -1,8 +1,8 @@
 import React from 'react';
 
 const messages = {
-  'en-US': 'Loading English page...',
-  'ja-JP': '日本語のページを読み込んでいます...',
+  'en-US': 'Taking you to English version',
+  'ja-JP': '日本語でご案内いたします',
 };
 
 // Fallback language
@@ -15,7 +15,10 @@ if (languageUsed && languageUsed in messages) {
 
 function LoadingLanguage() {
   return (
-    <p>{message}</p>
+    <div className="loading-message">
+      <div className="loader">Loading...</div>
+      {message}
+    </div>
   );
 }
 

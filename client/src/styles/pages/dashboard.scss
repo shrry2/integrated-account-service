@@ -1,0 +1,11 @@
+.dashboard-root {
+  background: #00c34d;
+  background: linear-gradient(to bottom, #00c34d, #0575e6);
+  color: #fff;
+
+  @media screen and (min-width: 768px) {
+    background: transparent;
+    color: #333;
+    padding: 0;
+  }
+}

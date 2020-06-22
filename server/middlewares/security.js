@@ -2,11 +2,11 @@ const hpp = require('hpp');
 const helmet = require('helmet');
 const uuidv4 = require('uuid/v4');
 const Boom = require('@hapi/boom');
+const { IS_DEV } = require('../constants');
 
 const csrf = require('./csrf');
 
 const securityMiddleware = (app) => {
-
   // Prevent HTTP Parameter pollution
   app.use(hpp());
 
@@ -31,7 +31,6 @@ const securityMiddleware = (app) => {
   // Set CSP Nonce for every requests
   app.use((req, res, next) => {
     res.locals.nonce = uuidv4();
-    req.logger.debug('set nonce', { nonce: res.locals.nonce });
     next();
   });
 
@@ -50,7 +49,7 @@ const securityMiddleware = (app) => {
         (request, response) => `'nonce-${response.locals.nonce}'`,
       ],
 
-      // The origins of images are open to all servers
+      // The origins of image are open to all servers
       imgSrc: ['https:', 'http:', "'self'", 'data:', 'blob:'],
 
       // Valid sources of stylesheets
@@ -95,19 +94,21 @@ const securityMiddleware = (app) => {
 
   // csrf token error handler
   app.use((err, req, res, next) => {
-    res.locals.csrfToken = req.csrfToken();
+    if (req.csrfToken) {
+      res.locals.csrfToken = req.csrfToken();
+    }
 
     // catch only csrf token error
     if (err.code === 'EBADCSRFTOKEN') {
       // if in dev env and csrf check disable flag is on,
       // ignore csrf check error
-      if ((req.app.get('env') === 'development') && req.query.nocsrf === '1') {
+      if (IS_DEV && req.query.nocsrf === '1') {
         return next();
       }
 
       return next(Boom.forbidden('CSRF Token Error'));
     }
-    next(err);
+    return next(err);
   });
 };
 

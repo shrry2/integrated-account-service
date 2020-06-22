@@ -1,1 +1,15 @@
-{}
+{
+  "and": "と",
+  "andWithSpace": "と",
+  "signup": "アカウント登録",
+  "signin": "サインイン",
+  "signout": "ログアウト",
+  "Error": "エラー",
+  "displayName": "表示名",
+  "email": "メールアドレス",
+  "profilePicture": "プロフィール画像",
+  "NotSet": "未設定",
+  "loading": "読込中です",
+  "loadFailed": "読み込みに失敗しました",
+  "primary": "メイン"
+}

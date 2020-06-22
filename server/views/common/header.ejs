@@ -1,9 +1,9 @@
 <%
     function getTitle() {
         if(typeof title === 'string') {
-            return `${title} | SERVICE_NAME Account`;
+            return `${title} | AmID`;
         } else {
-            return 'SERVICE_NAME Account';
+            return 'AmID';
         }
     }
 
@@ -64,7 +64,7 @@
             </div>
         </noscript>
     </div>
-    <header id="globalHeader" class="container-lg">
-<!--        <h1><a href="/" title="Back to top"><%- include('logo_with_icon'); -%>Account</a></h1>-->
+    <header id="globalHeader">
+        <a href="/" title="<%= t('header.backToTop') %>"><%- include('logo'); -%></a>
     </header>
     <main class="container-lg">

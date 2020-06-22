@@ -3,6 +3,7 @@
  */
 const Boom = require('@hapi/boom');
 const { IS_DEV } = require('../constants');
+const isTranslationKey = require('../utils/trans-key-detector');
 
 const errorHandler = (rawError, req, res, next) => {
   if (res.headersSent) {
@@ -11,7 +12,7 @@ const errorHandler = (rawError, req, res, next) => {
 
   const { t } = req;
 
-  const error = Boom.isBoom(rawError) ? rawError : Boom.boomify(rawError);
+  let error = Boom.isBoom(rawError) ? rawError : Boom.boomify(rawError);
 
   if (error.isServer || IS_DEV) {
     // Server Error => Log it!
@@ -21,6 +22,15 @@ const errorHandler = (rawError, req, res, next) => {
 
   if (error.message === 'CSRF Token Error') {
     error.output.payload.message = t('errors:csrf_token_error.message');
+  }
+
+  if (rawError.message === 'Unexpected end of JSON input') {
+    req.logger.error(rawError);
+    error = Boom.badRequest();
+  }
+
+  if (error.output.payload.error === 'Internal Server Error') {
+    error.output.payload.message = t('errors:Internal Server Error.message');
   }
 
   const statusCode = error.isBoom
@@ -37,8 +47,7 @@ const errorHandler = (rawError, req, res, next) => {
   };
 
   // try to translate if error message seems to be a translation id
-  const re = /.*[:.].*/;
-  if (re.test(payload.message)) {
+  if (isTranslationKey(payload.message)) {
     localized.message = t(payload.message);
   }
 
@@ -67,6 +76,7 @@ const errorHandler = (rawError, req, res, next) => {
     },
     statusCode,
     message: localized.message,
+    requestId: req.id,
     error: req.app.get('env') === 'development' ? error : null,
   });
 };

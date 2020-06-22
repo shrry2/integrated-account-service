@@ -40,7 +40,7 @@ ErrorBoundary.propTypes = {
   fallbackComponent: PropTypes.element,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element
+    PropTypes.element,
   ]),
 };
 
